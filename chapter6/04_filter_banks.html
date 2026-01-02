@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - بانک فیلتر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="03_pyramid_types.html">قبلی: هرم‌های پسماند پیشگویی</a>
+            <a href="05_orthogonal_filters.html">بعدی: فیلترهای متعامد</a>
+        </div>
+
+        <h1>بانک فیلتر (Filter Bank)</h1>
+
+        <div class="definition">
+            <h2>تعریف بانک فیلتر</h2>
+            <p><strong>بانک فیلتر</strong> مجموعه‌ای از فیلترها است که برای تجزیه و ترکیب سیگنال‌ها استفاده می‌شود.</p>
+        </div>
+
+        <h2>بانک فیلتر تحلیل</h2>
+        
+        <div class="highlight">
+            <p>بانک فیلتر تحلیل که شامل $h_0(n)$ و $h_1(n)$ است برای تبدیل دنباله ورودی $f(n)$ به دو دنباله به طول نصف استفاده می‌شود:</p>
+            <ul>
+                <li>$f_{lp}(n)$: زیرباند پایین‌گذر (تخمین)</li>
+                <li>$f_{hp}(n)$: زیرباند بالا‌گذر (جزئیات)</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <h3>فیلتر پایین‌گذر $h_0(n)$</h3>
+            <ul>
+                <li>یک فیلتر پایین‌گذر است</li>
+                <li>خروجی آن یعنی زیرباند $f_{lp}(n)$ <strong>تخمین</strong> $f(n)$ نام دارد</li>
+                <li>اطلاعات فرکانس پایین را حفظ می‌کند</li>
+            </ul>
+
+            <h3>فیلتر بالا‌گذر $h_1(n)$</h3>
+            <ul>
+                <li>یک فیلتر بالا‌گذر است</li>
+                <li>خروجی آن یعنی زیرباند $f_{hp}(n)$ به نام <strong>فرکانس بالا</strong> یا <strong>بخش جزئیات</strong> $f(n)$ خوانده می‌شود</li>
+                <li>اطلاعات فرکانس بالا (جزئیات) را استخراج می‌کند</li>
+            </ul>
+        </div>
+
+        <h2>بانک فیلتر ترکیبی</h2>
+        
+        <div class="highlight">
+            <p>فیلترهای بانک ترکیبی $g_0(n)$ و $g_1(n)$:</p>
+            <ul>
+                <li>دنباله‌های $f_{lp}(n)$ و $f_{hp}(n)$ را ترکیب می‌کنند</li>
+                <li>تا تصویر $\hat{f}(n)$ بدست آید</li>
+                <li>زمانی که $\hat{f}(n)$ برابر با $f(n)$ باشد، می‌گوییم سیستم <strong>بازسازی کامل</strong> کرده است</li>
+            </ul>
+        </div>
+
+        <h2>رابطه فیلترهای تحلیل و ترکیبی</h2>
+        
+        <div class="formula">
+            <p>برای بازسازی کامل، پاسخ‌های ضربه فیلترهای ترکیبی و تحلیلی باید به یکی از روش‌های زیر مرتبط باشند:</p>
+            <p>$g_0(n) = (-1)^n h_1(n)$</p>
+            <p>$g_1(n) = (-1)^{n+1} h_0(n)$</p>
+            <p>یا</p>
+            <p>$g_0(n) = (-1)^{n+1} h_1(n)$</p>
+            <p>$g_1(n) = (-1)^n h_0(n)$</p>
+        </div>
+
+        <div class="definition">
+            <p>چهار تابع فوق <strong>مدوله متقابل (Cross-modulated)</strong> هستند.</p>
+            <p>در تمام بانک‌های فیلتر، فیلترهای ترکیبی نسخه مدوله شده فیلترهای تحلیلی هستند.</p>
+        </div>
+
+        <h2>ویژگی‌های بانک فیلتر</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>بازسازی کامل:</strong> امکان بازسازی کامل سیگنال اصلی</li>
+                <li><strong>تجزیه کارآمد:</strong> تجزیه سیگنال به دو زیرباند</li>
+                <li><strong>کاهش نرخ نمونه‌برداری:</strong> کاهش محاسبات با کاهش نرخ نمونه‌برداری</li>
+            </ul>
+        </div>
+
+        <h2>کاربردهای بانک فیلتر</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>تبدیل موجک:</strong> پایه تبدیل موجک گسسته</li>
+                <li><strong>فشرده‌سازی:</strong> فشرده‌سازی تصاویر و سیگنال‌ها</li>
+                <li><strong>تحلیل چند مقیاسی:</strong> تحلیل در سطوح مختلف دقت</li>
+                <li><strong>حذف نویز:</strong> جداسازی نویز از سیگنال</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="05_orthogonal_filters.html">فیلترهای متعامد و دو تعامدی</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

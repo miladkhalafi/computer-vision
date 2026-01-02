@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - فیلترهای تطبیقی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="13_order_statistic_filters.html">قبلی: فیلترهای مرتبه آماری</a>
+            <a href="15_periodic_noise_reduction.html">بعدی: کاهش نویز متناوب</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: فیلترهای تطبیقی</h1>
+        <div class="definition">
+            <h2>مفهوم فیلترهای تطبیقی</h2>
+            <p>در این بخش، دو فیلتر تطبیقی را در نظر می‌گیریم که رفتار آنها براساس ویژگی‌های آماری تصویر در داخل منطقه فیلتر که توسط پنجره چهارگوش $S_{xy}$ با ابعاد $m \times n$ تعریف شده است تغییر می‌کند.</p>
+        </div>
+        <h2>فیلتر تطبیقی کاهش نویز محلی</h2>
+        <div class="formula">$$\hat{f}(x, y) = g(x, y) - \frac{\sigma_\eta^2}{\sigma_L^2} [g(x, y) - m_L]$$</div>
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$\sigma_\eta^2$</strong>: واریانس کل نویز (باید معلوم باشد یا با تخمین خوبی بدست آید)</li>
+                <li><strong>$\sigma_L^2$</strong>: واریانس محلی محاسبه شده در هر ناحیه $M \times N$</li>
+                <li><strong>$m_L$</strong>: میانگین محلی</li>
+            </ul>
+        </div>
+        <div class="highlight">
+            <h3>ویژگی‌های فیلتر تطبیقی</h3>
+            <ul>
+                <li>میانگین، معیاری از شدت میانگین را در داخل منطقه فیلتر نشان می‌دهد</li>
+                <li>واریانس معیاری از کنتراست را در آن منطقه ارائه می‌کند</li>
+                <li>اگر واریانس نویز صفر باشد: فیلتر باید مقدار $g(x,y)$ را برگرداند</li>
+                <li>اگر واریانس محلی نسبت به واریانس نویز زیاد باشد: فیلتر باید مقداری نزدیک به $g(x,y)$ را برگرداند</li>
+                <li>اگر دو واریانس برابر باشند: فیلتر باید مقدار میانگین حسابی پیکسل‌ها در $S_{xy}$ را برگرداند</li>
+            </ul>
+        </div>
+        <h2>فیلتر میانه تطبیقی</h2>
+        <div class="definition">
+            <p>فیلتر میانه در صورتی بخوبی عمل می‌کند که چگالی مکانی نویز ضربه‌ای بزرگ نباشد. فیلتر میانه تطبیقی می‌تواند نویز ضربه‌ای با احتمالات بزرگتر از اینها را اداره کند.</p>
+            <p>حسن دیگر فیلتر میانه تطبیقی این است که سعی می‌کند جزییات را حفظ کند در حالی که نویز غیر ضربه‌ای را هموار می‌کند.</p>
+        </div>
+        <div class="highlight">
+            <h3>الگوریتم میانه تطبیقی</h3>
+            <p><strong>مرحله الف:</strong></p>
+            <ul>
+                <li>$A_1 = Z_{med} - Z_{min}$</li>
+                <li>$A_2 = Z_{med} - Z_{max}$</li>
+                <li>اگر $A_1 > 0$ و $A_2 < 0$ به مرحله (ب) بروید</li>
+                <li>در غیر اینصورت سایز پنجره را افزایش دهید</li>
+            </ul>
+            <p><strong>مرحله ب:</strong></p>
+            <ul>
+                <li>$B_1 = Z_{xy} - Z_{min}$</li>
+                <li>$B_2 = Z_{xy} - Z_{max}$</li>
+                <li>اگر $B_1 > 0$ و $B_2 < 0$: خروجی = $Z_{xy}$</li>
+                <li>در غیر اینصورت: خروجی = $Z_{med}$</li>
+            </ul>
+        </div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="15_periodic_noise_reduction.html">کاهش نویز متناوب</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - هرم‌های پسماند پیشگویی و تقریب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="02_image_pyramids.html">قبلی: هرم تصویری</a>
+            <a href="04_filter_banks.html">بعدی: بانک فیلتر</a>
+        </div>
+
+        <h1>هرم‌های پسماند پیشگویی و هرم‌های تقریب</h1>
+
+        <div class="definition">
+            <h2>هرم پسماند پیشگویی (Prediction Residual Pyramid)</h2>
+            <p>هرم پسماند پیشگویی تفاوت بین تصویر اصلی و تصویر پیشگویی شده را در هر سطح ذخیره می‌کند.</p>
+        </div>
+
+        <h2>مراحل ساخت هرم پسماند پیشگویی</h2>
+        
+        <div class="highlight">
+            <h3>مرحله اول: محاسبه تخمین کاهش یافته</h3>
+            <p>یک تخمین کاهش یافته را از تصویر ورودی سطح $i$ محاسبه کنید:</p>
+            <ul>
+                <li>این کار با <strong>فیلتر کردن</strong> و <strong>کاهش نرخ نمونه‌برداری</strong> انجام می‌گیرد</li>
+                <li>نتیجه فیلتر شده با ضریب $2$ کاهش می‌یابد</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <h3>مرحله دوم: ایجاد برآورد از تصویر ورودی</h3>
+            <p>برآوردی از تصویر ورودی سطح $i$ را از تخمین با دقت کاهش یافته ایجاد نمایید:</p>
+            <ul>
+                <li>این کار با <strong>افزایش نرخ نمونه‌برداری</strong> و <strong>فیلتر کردن</strong> تخمین تولید شده انجام می‌گیرد</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>مرحله سوم: محاسبه تفاوت</h3>
+            <p>تفاوت بین تصویر پیشگویی مرحله 2 و ورودی مرحله 1 را محاسبه کنید.</p>
+            <p>این تفاوت همان <strong>پسماند پیشگویی</strong> است که در هرم ذخیره می‌شود.</p>
+        </div>
+
+        <h2>هرم تقریب (Approximation Pyramid)</h2>
+        
+        <div class="definition">
+            <p>هرم تقریب شامل تخمین‌های کاهش یافته از تصویر در سطوح مختلف است.</p>
+            <ul>
+                <li>سطوح با دقت پایین‌تر برای تحلیل ساختارهای بزرگ یا کل زمینه تصویر به کار می‌رود</li>
+                <li>تصاویر با دقت بالا برای تحلیل هر یک از ویژگی‌های شی مناسب‌اند</li>
+                <li>این روش تحلیل برای <strong>تشخیص الگو</strong> مفید است</li>
+            </ul>
+        </div>
+
+        <h2>تکنیک‌های فیلتر کردن</h2>
+        
+        <div class="highlight">
+            <h3>میانگین‌گیری همسایگی</h3>
+            <ul>
+                <li>هرم‌های میانگین را تولید می‌نماید</li>
+                <li>ساده‌ترین روش فیلتر کردن</li>
+            </ul>
+
+            <h3>فیلتر کردن گوسی پایین‌گذر</h3>
+            <ul>
+                <li>هرم‌های گوسی را تولید می‌نماید</li>
+                <li>کارایی بهتری در حفظ اطلاعات دارد</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه هرم تقریب و هرم پسماند پیشگویی</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>هرم تقریب:</strong> تخمین‌های کاهش یافته از تصویر را ذخیره می‌کند</li>
+                <li><strong>هرم پسماند پیشگویی:</strong> اطلاعات از دست رفته در فرایند کاهش دقت را ذخیره می‌کند</li>
+                <li>با استفاده از هر دو هرم می‌توان تصویر اصلی را به طور کامل بازسازی کرد</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>فشرده‌سازی:</strong> ذخیره‌سازی کارآمد با استفاده از هرم تقریب و پسماند</li>
+                <li><strong>تحلیل چند مقیاسی:</strong> تحلیل تصویر در سطوح مختلف دقت</li>
+                <li><strong>تشخیص الگو:</strong> استفاده از سطوح مختلف برای تشخیص الگوهای مختلف</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="04_filter_banks.html">بانک فیلتر</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

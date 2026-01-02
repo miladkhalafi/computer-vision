@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - مدل تنزل کیفیت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="01_introduction.html">قبلی: مقدمه</a>
+            <a href="03_quality_metrics.html">بعدی: معیارهای کیفیت</a>
+        </div>
+
+        <h1>فصل پنجم – بازیابی تصویر: مدل تنزل کیفیت</h1>
+
+        <div class="definition">
+            <h2>مدل ریاضی تنزل کیفیت</h2>
+            <p>تابع تنزل به همراه جمله نویز افزایشی بر روی تصویر ورودی $f(x, y)$ عمل می‌کند تا تصویر تنزل یافته $g(x, y)$ را تولید نماید.</p>
+        </div>
+
+        <h2>معادله تنزل کیفیت در حوزه مکان</h2>
+        
+        <div class="formula">
+            $$g(x, y) = h(x, y) * f(x, y) + n(x, y)$$
+        </div>
+
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$f(x, y)$</strong>: تصویر اصلی (ورودی)</li>
+                <li><strong>$g(x, y)$</strong>: تصویر تنزل یافته (خروجی)</li>
+                <li><strong>$h(x, y)$</strong>: تابع تنزل (degradation function)</li>
+                <li><strong>$n(x, y)$</strong>: نویز افزایشی</li>
+                <li><strong>$*$</strong>: عملگر کانولوشن</li>
+            </ul>
+        </div>
+
+        <h2>معادله تنزل کیفیت در حوزه فرکانس</h2>
+        
+        <div class="formula">
+            $$G(u, v) = H(u, v) F(u, v) + N(u, v)$$
+        </div>
+
+        <div class="highlight">
+            <h3>هدف بازیابی</h3>
+            <p>با توجه به وجود $g(x, y)$، اطلاعات مربوط به تابع تنزل $h(x, y)$ و اطلاعات مربوط به جمله نویز افزایشی $n(x, y)$، هدف بازیابی و بدست آوردن تخمین تصویر اصلی یعنی $\hat{f}(x, y)$ است.</p>
+            <p>می‌خواهیم این تخمین تا حد امکان به تصویر ورودی اصلی نزدیک باشد.</p>
+        </div>
+
+        <h2>نکات مهم</h2>
+        
+        <div class="definition">
+            <ul>
+                <li>بطور کلی هر چه بیشتر راجع به $h(x, y)$ و $n(x, y)$ بدانیم، تخمین ما به واقعیت نزدیک‌تر خواهد شد</li>
+                <li>در عمل، معمولاً اطلاعات کامل از $h(x, y)$ و $n(x, y)$ در دسترس نیست</li>
+                <li>باید از روش‌های تخمین برای بدست آوردن این اطلاعات استفاده کنیم</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="03_quality_metrics.html">معیارهای کیفیت</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

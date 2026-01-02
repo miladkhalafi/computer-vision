@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - اصل عدم قطعیت زمان-فرکانس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="12_fwt_equations.html">قبلی: معادلات FWT</a>
+            <a href="13_2d_wavelets.html">بعدی: تبدیلات موجک در دو بعد</a>
+        </div>
+
+        <h1>اصل عدم قطعیت زمان-فرکانس</h1>
+
+        <div class="definition">
+            <h2>مفهوم اصلی</h2>
+            <p>در هنگام نمایش توابع، <strong>زمان</strong> و <strong>فرکانس</strong> به عنوان حوزه‌های مختلفی در نظر گرفته می‌شوند ولی <strong>پیوند ناگسستی</strong> با هم دارند.</p>
+        </div>
+
+        <h2>اصل عدم قطعیت</h2>
+        
+        <div class="highlight">
+            <p><strong>اگر می‌خواهید اطلاعات دقیقی درباره زمان داشته باشید، باید ابهاماتی را درباره فرکانس بپذیرید و برعکس.</strong></p>
+        </div>
+
+        <h2>مقایسه روش‌های مختلف</h2>
+        
+        <div class="definition">
+            <h3>الف) داده‌های نمونه‌برداری شده</h3>
+            <ul>
+                <li>لحظه‌ها را در هنگامی که رویدادها رخ می‌دهند تعیین می‌کند</li>
+                <li>اما هیچ اطلاعاتی درباره فرکانس‌ها ارائه نمی‌کند</li>
+            </ul>
+
+            <h3>ب) تبدیل فوریه</h3>
+            <ul>
+                <li>فرکانس‌هایی را مشخص می‌کند که در رویدادهایی وجود دارند</li>
+                <li>که در دوره‌های زمانی طولانی رخ می‌دهند</li>
+                <li>اما هیچ راه حل زمانی ارائه نمی‌کند</li>
+            </ul>
+
+            <h3>ج) تبدیل موجک</h3>
+            <ul>
+                <li>کاشی‌ها در فرکانس‌های پایین، کوتاه‌تر هستند (دارای دقت فرکانسی بهتر یا ابهام کمتری درباره فرکانس هستند)</li>
+                <li>ولی وسیع‌تر می‌باشند (متناظر با دقت زمانی کمتر یا ابهام بیشتر در زمان است)</li>
+                <li>در فرکانس‌های بالا، پهنای کاشی کوچک‌تر است (در نتیجه دقت زمانی بهبود می‌یابد)</li>
+                <li>و ارتفاع کاشی بزرگ‌تر است که به معنای پایین بودن دقت فرکانس است</li>
+            </ul>
+        </div>
+
+        <h2>ویژگی‌های تبدیل موجک</h2>
+        
+        <div class="highlight">
+            <p>تبدیل موجک:</p>
+            <ul>
+                <li><strong>تحلیل تطبیقی:</strong> تطبیق اندازه پنجره با فرکانس</li>
+                <li><strong>دقت متغیر:</strong> دقت زمانی و فرکانسی متغیر</li>
+                <li><strong>بهترین تعادل:</strong> بهترین تعادل بین دقت زمانی و فرکانسی</li>
+            </ul>
+        </div>
+
+        <h2>مزایای تبدیل موجک</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>تحلیل محلی:</strong> امکان تحلیل محلی در زمان و فرکانس</li>
+                <li><strong>انعطاف‌پذیری:</strong> انعطاف‌پذیری در انتخاب دقت</li>
+                <li><strong>کارایی:</strong> کارایی بالا در پردازش سیگنال‌های غیرایستا</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>پردازش سیگنال:</strong> تحلیل سیگنال‌های زمانی-فرکانسی</li>
+                <li><strong>پردازش تصویر:</strong> تحلیل تصاویر در سطوح مختلف</li>
+                <li><strong>تشخیص الگو:</strong> تشخیص الگوهای پیچیده</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="13_2d_wavelets.html">تبدیلات موجک در دو بعد</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - فیلترهای متعامد و دو تعامدی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="04_filter_banks.html">قبلی: بانک فیلتر</a>
+            <a href="06_daubechies.html">بعدی: فیلتر Daubechies</a>
+        </div>
+
+        <h1>فیلترهای متعامد و دو تعامدی</h1>
+
+        <div class="definition">
+            <h2>فیلترهای تفکیک‌پذیر دوبعدی</h2>
+            <p>فیلترهای متعامد و دو تعامدی یک بعدی می‌توانند به عنوان <strong>فیلترهای تفکیک‌پذیر دوبعدی</strong> برای پردازش تصاویر به کار روند.</p>
+        </div>
+
+        <h2>روش اعمال فیلترهای تفکیک‌پذیر</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li>فیلترهای تفکیک‌پذیر ابتدا به <strong>یک بعد</strong> اعمال می‌شوند (مثال: عمودی)</li>
+                <li>سپس به <strong>بعد دیگر</strong> اعمال می‌شوند (مثال: افقی)</li>
+                <li>کاهش نرخ نمونه‌برداری در دو مرحله انجام می‌گیرد:
+                    <ul>
+                        <li>یکی قبل از فیلتر کردن</li>
+                        <li>دومی برای کاهش محاسبات</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2>زیرباندهای تصویر</h2>
+        
+        <div class="definition">
+            <p>خروجی‌های فیلتر شده حاصل به ترتیب به نام‌های زیر نامیده می‌شوند:</p>
+            <ul>
+                <li><strong>تخمین (Approximation):</strong> اطلاعات فرکانس پایین</li>
+                <li><strong>جزئیات عمودی (Vertical Details):</strong> جزئیات در جهت عمودی</li>
+                <li><strong>جزئیات افقی (Horizontal Details):</strong> جزئیات در جهت افقی</li>
+                <li><strong>جزئیات قطری (Diagonal Details):</strong> جزئیات در جهت قطری</li>
+            </ul>
+        </div>
+
+        <h2>تقسیم‌بندی تکراری</h2>
+        
+        <div class="highlight">
+            <p>این زیرباندها می‌توانند:</p>
+            <ul>
+                <li>به چهار زیرباند کوچکتر تقسیم شوند</li>
+                <li>این روند می‌تواند ادامه یابد</li>
+                <li>این امکان تحلیل چند مقیاسی را فراهم می‌کند</li>
+            </ul>
+        </div>
+
+        <h2>مزایای فیلترهای تفکیک‌پذیر</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>کاهش پیچیدگی محاسباتی:</strong> از $O(N^2)$ به $O(N)$ کاهش می‌یابد</li>
+                <li><strong>سادگی پیاده‌سازی:</strong> استفاده از فیلترهای یک بعدی</li>
+                <li><strong>کارایی بالا:</strong> محاسبات سریع‌تر</li>
+            </ul>
+        </div>
+
+        <h2>خواص فیلترهای متعامد</h2>
+        
+        <div class="formula">
+            <p>فیلترهای متعامد دارای خاصیت زیر هستند:</p>
+            <p>$\langle g_i(n), g_j(n+2m) \rangle = \delta(i-j)\delta(m)$</p>
+            <p>که در آن $\delta$ تابع دیراک است.</p>
+        </div>
+
+        <h2>خواص فیلترهای دو تعامدی</h2>
+        
+        <div class="formula">
+            <p>فیلترهای دو تعامدی دارای خاصیت زیر هستند:</p>
+            <p>$\langle h_i(2n-k), g_j(k) \rangle = \delta(i-j)\delta(n)$</p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="06_daubechies.html">فیلتر متعامد Daubechies</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

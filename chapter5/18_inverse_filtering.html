@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - فیلتر کردن معکوس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="17_degradation_estimation.html">قبلی: تخمین تابع تنزل</a>
+            <a href="19_wiener_filter.html">بعدی: فیلتر وینر</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: فیلتر کردن معکوس</h1>
+        <div class="definition">
+            <h2>فیلتر کردن معکوس مستقیم</h2>
+            <p>ساده‌ترین روش بازیابی، فیلتر کردن معکوس مستقیم است که در آن، تخمین تبدیل تصویر اصلی یعنی $\hat{F}(u,v)$ را با تقسیم تبدیل تصویر تنزل یافته یعنی $G(u,v)$ بر تابع تنزل محاسبه می‌کنیم:</p>
+        </div>
+        <div class="formula">$$\hat{F}(u, v) = \frac{G(u, v)}{H(u, v)}$$</div>
+        <div class="formula">$$\hat{F}(u, v) = F(u, v) + \frac{N(u, v)}{H(u, v)}$$</div>
+        <div class="highlight">
+            <h3>مشکلات فیلتر معکوس</h3>
+            <ul>
+                <li>حتی اگر تابع تنزل $H(u,v)$ را بدانیم، نمی‌توانیم تصویر خراب نشده را دقیقاً بازیابی نماییم</li>
+                <li>حتی اگر تابع تنزل را بدانیم، نمی‌توانیم تصویر تنزل نیافته را دقیقاً ترمیم کنیم زیرا $N(u,v)$ معلوم نیست</li>
+                <li>اگر تابع تنزل دارای مقدار صفر یا مقادیر خیلی کوچک باشد، آنگاه $\frac{N(u,v)}{H(u,v)}$ می‌تواند بر تخمین $\hat{F}(u,v)$ غالب شود</li>
+            </ul>
+        </div>
+        <h2>راه‌حل: محدود کردن فرکانس‌ها</h2>
+        <div class="definition">
+            <p>یک روش برای حل مشکل مقادیر صفر یا مقادیر کوچک، محدود کردن فرکانس‌های فیلتر به مقادیر نزدیک به مبدأ است.</p>
+            <p>می‌دانیم که $H(0,0)$ معمولاً بزرگ‌ترین مقدار $H(u,v)$ در حوزه فرکانس است.</p>
+        </div>
+        <h2>مثال: تابع تنزل گوسی</h2>
+        <div class="formula">$$H(u, v) = e^{-k[(u-M/2)^2 + (v-N/2)^2]^{5/6}}$$</div>
+        <div class="highlight">
+            <p>می‌دانیم تابع به شکل گوسی فاقد مقدار صفر است، اما علیرغم این وضعیت، مقادیر تنزل آنقدر کوچک می‌شوند که نتیجه فیلتر کردن معکوس کامل بی‌فایده خواهد بود.</p>
+            <p>بنابراین باید از روش‌های پیشرفته‌تر مثل فیلتر وینر استفاده کنیم.</p>
+        </div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="19_wiener_filter.html">فیلتر وینر</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

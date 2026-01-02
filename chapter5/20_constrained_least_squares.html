@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - فیلتر کمترین مجذورات مقید</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="19_wiener_filter.html">قبلی: فیلتر وینر</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: فیلتر کمترین مجذورات مقید</h1>
+        <div class="definition">
+            <h2>مشکل فیلتر وینر</h2>
+            <p>فیلتر وینر مشکل دیگری نیز دارد: طیف‌های قدرت تصویر تنزل نیافته و نویز باید معلوم باشند. برآورد ثابت نسبت طیف‌های قدرت، همواره راه حل مناسبی نیست.</p>
+        </div>
+        <h2>فیلتر کمترین مجذورات مقید</h2>
+        <div class="highlight">
+            <p>نکته مهم در این روش، حساسیت $H$ به نویز است. یک روش کاهش حساسیت به نویز این است که بهینگی را به معیارهایی مثل هموار بودن ارتباط دهیم مثل مشتق دوم.</p>
+            <p>برای اینکه بازیابی معنادار باشد باید توسط پارامترهای موجود مقید شود.</p>
+        </div>
+        <div class="formula">$$\min \|g - Hf\|^2$$</div>
+        <div class="formula">$$\text{subject to } \sum_{x=0}^{M-1} \sum_{y=0}^{N-1} [\nabla^2 f(x, y)]^2 = \eta^2$$</div>
+        <h2>فرمول فیلتر در حوزه فرکانس</h2>
+        <div class="formula">$$\hat{F}(u, v) = \left[ \frac{H^*(u, v)}{|H(u, v)|^2 + k |P(u, v)|^2} \right] G(u, v)$$</div>
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$k$</strong>: پارامتری است که می‌بایست طوری تنظیم شود که قید موجود را برآورده کند</li>
+                <li><strong>$P(u, v)$</strong>: تبدیل فوریه عملگر لاپلاسین</li>
+            </ul>
+        </div>
+        <h2>عملگر لاپلاسین</h2>
+        <div class="formula">$$P(x, y) = \nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$$</div>
+        <h2>مقایسه با فیلتر وینر</h2>
+        <div class="highlight">
+            <p>مقایسه نتایج فیلتر کمترین مجذورات مقید و وینر:</p>
+            <ul>
+                <li>کمترین مجذورات مقید برای مواردی که نویز بالا و متوسط دارند نتایج بهتری تولید می‌نماید</li>
+                <li>برای حالت نویز پایین، نتیجه هر دو فیلتر یکسان است</li>
+                <li>وقتی پارامترهای فیلتر به روش دستی تعیین می‌شوند تا نتایج دیداری بهتری به دست آید، غیرمنتظره نیست که فیلتر کمترین مجذورات مقید نسبت به فیلتر وینر بهتر عمل نماید</li>
+            </ul>
+        </div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>پایان فصل پنجم</strong></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - بسط سری‌های موجک</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="08_haar_transform.html">قبلی: تبدیل Haar</a>
+            <a href="10_dwt.html">بعدی: تبدیل موجک گسسته</a>
+        </div>
+
+        <h1>بسط سری‌های موجک</h1>
+
+        <div class="definition">
+            <h2>تعریف بسط سری‌های موجک</h2>
+            <p>تابع $f(x)$ می‌تواند توسط <strong>بسط تابع مقیاس‌بندی</strong> و <strong>بسط تابع موجک</strong> نمایش داده شود.</p>
+        </div>
+
+        <h2>فرمول کلی بسط</h2>
+        
+        <div class="formula">
+            <p>$$f(x) = \sum_k c_{j_0}(k) \phi_{j_0,k}(x) + \sum_{j=j_0}^{\infty} \sum_k d_j(k) \psi_{j,k}(x)$$</p>
+        </div>
+
+        <h2>ضرایب بسط</h2>
+        
+        <div class="highlight">
+            <h3>ضرایب مقیاس‌بندی (Approximation Coefficients)</h3>
+            <div class="formula">
+                <p>$$c_{j_0}(k) = \langle f(x), \phi_{j_0,k}(x) \rangle = \int f(x) \phi_{j_0,k}(x) dx$$</p>
+            </div>
+            <ul>
+                <li>این ضرایب <strong>تخمین</strong> تابع را در سطح $j_0$ نشان می‌دهند</li>
+                <li>اطلاعات فرکانس پایین را نگه می‌دارند</li>
+            </ul>
+
+            <h3>ضرایب موجک (Detail Coefficients)</h3>
+            <div class="formula">
+                <p>$$d_j(k) = \langle f(x), \psi_{j,k}(x) \rangle = \int f(x) \psi_{j,k}(x) dx$$</p>
+            </div>
+            <ul>
+                <li>این ضرایب <strong>جزئیات</strong> تابع را در سطح $j$ نشان می‌دهند</li>
+                <li>اطلاعات فرکانس بالا را نگه می‌دارند</li>
+            </ul>
+        </div>
+
+        <h2>توابع پایه</h2>
+        
+        <div class="definition">
+            <h3>تابع مقیاس‌بندی $\phi_{j,k}(x)$</h3>
+            <ul>
+                <li>تابع پایه برای نمایش تخمین</li>
+                <li>اطلاعات فرکانس پایین را استخراج می‌کند</li>
+            </ul>
+
+            <h3>تابع موجک $\psi_{j,k}(x)$</h3>
+            <ul>
+                <li>تابع پایه برای نمایش جزئیات</li>
+                <li>اطلاعات فرکانس بالا را استخراج می‌کند</li>
+            </ul>
+        </div>
+
+        <h2>ویژگی‌های بسط</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>بازسازی کامل:</strong> امکان بازسازی کامل تابع از ضرایب</li>
+                <li><strong>تحلیل چند مقیاسی:</strong> تحلیل در سطوح مختلف دقت</li>
+                <li><strong>کارایی:</strong> ضرایب کم برای نمایش اطلاعات</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه با بسط فوریه</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>بسط فوریه:</strong> استفاده از توابع سینوسی و کسینوسی</li>
+                <li><strong>بسط موجک:</strong> استفاده از توابع موجک با پشتیبانی محدود</li>
+                <li><strong>مزیت موجک:</strong> امکان تحلیل محلی در زمان و فرکانس</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="10_dwt.html">تبدیل موجک گسسته (DWT)</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

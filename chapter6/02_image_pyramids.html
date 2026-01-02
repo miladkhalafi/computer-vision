@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - هرم تصویری</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="01_introduction.html">قبلی: مقدمه</a>
+            <a href="03_pyramid_types.html">بعدی: هرم‌های پسماند پیشگویی</a>
+        </div>
+
+        <h1>هرم تصویری (Image Pyramid)</h1>
+
+        <div class="definition">
+            <h2>تعریف هرم تصویری</h2>
+            <p><strong>هرم تصویری</strong> یک ساختار داده‌ای چند سطحی است که تصویر را در سطوح مختلف دقت نمایش می‌دهد.</p>
+        </div>
+
+        <h2>ساختار هرم</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>قاعده هرم:</strong> شامل نمایش با دقت بالایی از تصویر در حال پردازش است</li>
+                <li><strong>راس هرم:</strong> شامل تصویری با دقت پایین است</li>
+                <li><strong>سطح قاعده:</strong> به اندازه $N \times N$ است</li>
+                <li><strong>سطح راس:</strong> به اندازه $1 \times 1$ است</li>
+            </ul>
+        </div>
+
+        <h2>ویژگی‌های هرم</h2>
+        
+        <div class="definition">
+            <ul>
+                <li>هرچه به طرف بالای هرم پیش می‌رویم، از <strong>اندازه</strong> و <strong>دقت</strong> تصویر کاسته می‌شود</li>
+                <li>اغلب هرم‌های تصویر به $P+1$ سطح تبدیل می‌شوند</li>
+                <li>معمولاً خود را به $P$ تخمین دقت از تصویر اصلی محدود می‌کنیم</li>
+            </ul>
+        </div>
+
+        <h2>کاربردهای هرم تصویری</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>تحلیل ساختارهای بزرگ:</strong> سطوح با دقت پایین‌تر برای تحلیل ساختارهای بزرگ یا کل زمینه تصویر</li>
+                <li><strong>تحلیل ویژگی‌های جزئی:</strong> تصاویر با دقت بالا برای تحلیل هر یک از ویژگی‌های شی مناسب‌اند</li>
+                <li><strong>تشخیص الگو:</strong> این روش تحلیل برای تشخیص الگو مفید است</li>
+                <li><strong>فشرده‌سازی:</strong> ذخیره‌سازی کارآمد تصاویر</li>
+                <li><strong>جستجوی سریع:</strong> جستجوی سریع در تصاویر بزرگ</li>
+            </ul>
+        </div>
+
+        <h2>انواع هرم‌های تصویری</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>هرم میانگین (Mean Pyramid):</strong> استفاده از میانگین‌گیری همسایگی</li>
+                <li><strong>هرم گوسی (Gaussian Pyramid):</strong> استفاده از فیلتر کردن گوسی پایین‌گذر</li>
+                <li><strong>هرم پسماند پیشگویی (Prediction Residual Pyramid):</strong> تفاوت بین تصویر اصلی و پیشگویی</li>
+                <li><strong>هرم تقریب (Approximation Pyramid):</strong> تخمین‌های کاهش یافته از تصویر</li>
+            </ul>
+        </div>
+
+        <h2>مزایای استفاده از هرم</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li>امکان تحلیل تصویر در سطوح مختلف دقت</li>
+                <li>کاهش پیچیدگی محاسباتی برای تحلیل ساختارهای بزرگ</li>
+                <li>قابلیت پردازش موازی در سطوح مختلف</li>
+                <li>کارایی بالا در فشرده‌سازی و ذخیره‌سازی</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="03_pyramid_types.html">هرم‌های پسماند پیشگویی و تقریب</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

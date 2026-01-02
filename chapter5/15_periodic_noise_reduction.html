@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - کاهش نویز متناوب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="14_adaptive_filters.html">قبلی: فیلترهای تطبیقی</a>
+            <a href="17_degradation_estimation.html">بعدی: تخمین تابع تنزل</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: کاهش نویز متناوب</h1>
+        <div class="definition">
+            <h2>نویز متناوب</h2>
+            <p>نویز متناوب در یک تصویر، ناشی از تداخل الکترومغناطیسی یا الکتریکی در اثنای تصویربرداری است. این نویز تنها نویز وابسته به مکان است که در این فصل بررسی خواهد شد.</p>
+            <p>نویز متناوب می‌تواند از طریق فیلتر کردن حوزه فرکانس کاهش یابد.</p>
+        </div>
+        <h2>فیلترهای حذف باند (Bandreject Filters)</h2>
+        <div class="highlight">
+            <p>یکی از کاربردهای اصلی فیلتر حذف باند، در کاربردهایی است که در آنها، مکان کلی مولفه‌های نویز در حوزه فرکانس، تقریباً معلوم است.</p>
+            <p>مولفه‌های نویز بصورت جفت‌های متقارن از نقاط روشن در طیف فوریه دیده می‌شود.</p>
+        </div>
+        <h2>فیلترهای میان‌گذر (Bandpass Filters)</h2>
+        <div class="formula">$$H_{bp}(u, v) = 1 - H_{br}(u, v)$$</div>
+        <div class="definition">
+            <p>فیلتر میان‌گذر، عملیات عکس فیلتر حذف باند را انجام می‌دهد.</p>
+            <ul>
+                <li>اعمال مستقیم فیلتر میان‌گذر روی یک تصویر، رویه متداولی نیست زیرا جزییات بسیاری را از تصویر حذف می‌کند</li>
+                <li>فیلتر کردن میان‌گذر در تفکیک آثار روی تصویر، که ناشی از باندهای فرکانس انتخاب شده است مفید می‌باشد</li>
+                <li>فیلتر کردن میان‌گذر به تفکیک الگوی نویز کمک می‌کند</li>
+            </ul>
+        </div>
+        <h2>فیلترهای فاقی (Notch Filters)</h2>
+        <div class="definition">
+            <p>فیلترهای فاقی، فرکانس‌های موجود در همسایگی از پیش تعریف شده حول فرکانس مرکزی را حذف می‌کند.</p>
+            <p>با توجه به متقارن بودن تبدیل فوریه، فیلترهای فاقی باید بصورت جفت‌های متقارن حول مبدأ باشند تا نتایج معناداری بدست آید.</p>
+        </div>
+        <h2>فیلتر فاقی ایده‌آل</h2>
+        <div class="formula">$$H(u, v) = \begin{cases} 0 & \text{if } D_1(u, v) \leq D_0 \text{ or } D_2(u, v) \leq D_0 \\ 1 & \text{otherwise} \end{cases}$$</div>
+        <h2>فیلتر فاقی باترورث</h2>
+        <div class="formula">$$H(u, v) = \frac{1}{1 + \left[ \frac{D_0^2}{D_1(u, v) D_2(u, v)} \right]^n}$$</div>
+        <h2>فیلتر فاقی گوسی</h2>
+        <div class="formula">$$H(u, v) = 1 - e^{-\frac{1}{2} \left[ \frac{D_1(u, v) D_2(u, v)}{D_0^2} \right]}$$</div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="17_degradation_estimation.html">تخمین تابع تنزل</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

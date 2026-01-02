@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - فیلترهای میانگین</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="13_order_statistic_filters.html">بعدی: فیلترهای مرتبه آماری</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: فیلترهای میانگین</h1>
+        <div class="definition">
+            <h2>بازیابی تصویر با حضور فقط نویز</h2>
+            <p>وقتی تنها عامل تنزل کیفیت تصویر، نویز باشد:</p>
+            <div class="formula">$$g(x, y) = f(x, y) + n(x, y)$$</div>
+            <p>فیلتر کردن مکانی، در مواردی که فقط نویز تصادفی افزایشی وجود دارد مناسب است.</p>
+        </div>
+        <h2>فیلتر میانگین حسابی</h2>
+        <div class="formula">$$\hat{f}(x, y) = \frac{1}{mn} \sum_{(s,t) \in S_{xy}} g(s, t)$$</div>
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$S_{xy}$</strong>: مجموعه مختصات در پنجره $m \times n$ با مرکز $(x, y)$</li>
+                <li>فیلتر میانگین، تغییرات محلی را در تصویر هموار می‌کند و نویز در اثر مات شدگی کاهش می‌یابد</li>
+            </ul>
+        </div>
+        <h2>فیلتر میانگین هندسی</h2>
+        <div class="formula">$$\hat{f}(x, y) = \left[ \prod_{(s,t) \in S_{xy}} g(s, t) \right]^{\frac{1}{mn}}$$</div>
+        <div class="highlight">
+            <p>فیلتر میانگین هندسی، هموار سازی را مثل فیلتر میانگین حسابی انجام می‌دهد اما در این فرایند، جزییات کمتری از تصویر از دست می‌رود.</p>
+        </div>
+        <h2>فیلتر میانگین هارمونیک</h2>
+        <div class="formula">$$\hat{f}(x, y) = \frac{mn}{\sum_{(s,t) \in S_{xy}} \frac{1}{g(s, t)}}$$</div>
+        <div class="definition">
+            <p>فیلتر میانگین هارمونیک:</p>
+            <ul>
+                <li>برای نویز نمکی کار می‌کند</li>
+                <li>ولی برای نویز فلفلی با شکست مواجه می‌شود</li>
+                <li>با سایر انواع نویز مثل نویز گوسی نیز خوب کار می‌کند</li>
+            </ul>
+        </div>
+        <h2>فیلتر میانگین ضد هارمونیک</h2>
+        <div class="formula">$$\hat{f}(x, y) = \frac{\sum_{(s,t) \in S_{xy}} g(s, t)^{Q+1}}{\sum_{(s,t) \in S_{xy}} g(s, t)^Q}$$</div>
+        <div class="highlight">
+            <h3>ویژگی‌های فیلتر ضد هارمونیک</h3>
+            <ul>
+                <li><strong>$Q$</strong>: مرتبه فیلتر</li>
+                <li>این فیلتر برای کاهش یا حذف مجازی آثار نویز نمک و فلفل بکار می‌رود</li>
+                <li>برای مقادیر مثبت $Q$: نویز فلفلی را حذف می‌کند</li>
+                <li>برای مقادیر منفی $Q$: نویز نمکی حذف می‌شود</li>
+                <li>اگر $Q=0$: به فیلتر میانگین حسابی تبدیل می‌شود</li>
+                <li>اگر $Q=-1$: به میانگین هارمونیک تبدیل می‌شود</li>
+            </ul>
+        </div>
+        <h2>مقایسه فیلترها</h2>
+        <div class="definition">
+            <ul>
+                <li>فیلترهای میانگین حسابی و هندسی برای نویز تصادفی مثل نویز گوسی یا یکنواخت مناسب است</li>
+                <li>فیلتر ضدهارمونیک برای نویز ضربه‌ای مناسب است اما باید معلوم باشد که آیا نویز تاریک یا روشن است</li>
+            </ul>
+        </div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="13_order_statistic_filters.html">فیلترهای مرتبه آماری</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

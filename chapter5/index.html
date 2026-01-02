@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>فهرست مطالب - فصل پنجم: بازیابی تصویر</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+        .topic-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 5px solid #3498db;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .topic-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-right-color: #2980b9;
+        }
+        .topic-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            display: block;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .topic-item a:hover {
+            color: #3498db;
+        }
+        .topic-description {
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .chapter-info {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-right: 4px solid #3498db;
+        }
+        .chapter-info h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            color: #7f8c8d;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← بازگشت به فهرست فصول</a>
+        
+        <h1>فصل پنجم: بازیابی تصویر</h1>
+        <div class="subtitle">بازیابی و ترمیم تصاویر تخریب شده</div>
+
+        <div class="chapter-info">
+            <h2>درباره این فصل</h2>
+            <p>این فصل به بررسی <strong>بازیابی تصویر</strong> می‌پردازد. برخلاف ارتقای تصویر که بر اساس قضاوت بصری است، بازیابی تصویر بر اساس <strong>مدل ریاضی تنزل کیفیت</strong> عمل می‌کند. در این فصل با انواع نویز، فیلترهای مکانی و فرکانسی برای حذف نویز، و روش‌های پیشرفته بازیابی مانند فیلتر وینر و فیلتر کمترین مجذورات مقید آشنا می‌شوید.</p>
+        </div>
+
+        <ul class="topic-list">
+            <li class="topic-item">
+                <a href="01_introduction.html">1. مقدمه بازیابی تصویر</a>
+                <div class="topic-description">
+                    آشنایی با مفهوم بازیابی تصویر، تفاوت با ارتقای تصویر، و اهداف اصلی بازیابی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="02_degradation_model.html">2. مدل تنزل کیفیت</a>
+                <div class="topic-description">
+                    مدل ریاضی تنزل کیفیت در حوزه مکان و فرکانس، معادله کلی بازیابی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="03_quality_metrics.html">3. معیارهای کیفیت</a>
+                <div class="topic-description">
+                    معیارهای کمی و کیفی برای ارزیابی کیفیت تصویر: MSE, SNR, PSNR
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="04_noise_properties.html">4. خواص نویز</a>
+                <div class="topic-description">
+                    خواص فرکانسی و مکانی نویز، انواع نویز، و روش‌های برآورد پارامترهای نویز
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="05_gaussian_noise.html">5. نویز گوسی</a>
+                <div class="topic-description">
+                    نویز گوسی (نرمال)، تابع چگالی احتمال، و کاربردهای آن
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="12_mean_filters.html">12. فیلترهای میانگین</a>
+                <div class="topic-description">
+                    فیلتر میانگین حسابی، هندسی، هارمونیک، و ضد هارمونیک برای حذف نویز
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="13_order_statistic_filters.html">13. فیلترهای مرتبه آماری</a>
+                <div class="topic-description">
+                    فیلتر میانه، فیلتر max/min، فیلتر نقطه میانی، و فیلتر میانگین حذف آلفا
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="14_adaptive_filters.html">14. فیلترهای تطبیقی</a>
+                <div class="topic-description">
+                    فیلتر تطبیقی کاهش نویز محلی و فیلتر میانه تطبیقی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="15_periodic_noise_reduction.html">15. کاهش نویز متناوب</a>
+                <div class="topic-description">
+                    فیلترهای حذف باند، میان‌گذر، و فاقی برای حذف نویز متناوب
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="16_linear_position_invariant.html">16. مدل خرابی خطی و تغییرناپذیر با مکان</a>
+                <div class="topic-description">
+                    ترمیم تصویر در عدم حضور نویز، عملگر خطی، مستقل از مکان، و deconvolution
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="17_degradation_estimation.html">17. تخمین تابع تنزل</a>
+                <div class="topic-description">
+                    تخمین مدل خرابی از طریق مشاهده، آزمایش، و مدل‌سازی (تالطم جوی، تاری حرکت)
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="18_inverse_filtering.html">18. فیلتر کردن معکوس</a>
+                <div class="topic-description">
+                    ساده‌ترین روش بازیابی، مشکلات فیلتر معکوس، و راه‌حل‌های آن
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="19_wiener_filter.html">19. فیلتر وینر</a>
+                <div class="topic-description">
+                    فیلتر مینیمم میانگین مربع خطا، فرمول وینر، و مقایسه با فیلتر معکوس
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="20_constrained_least_squares.html">20. فیلتر کمترین مجذورات مقید</a>
+                <div class="topic-description">
+                    فیلتر کمترین مجذورات مقید، استفاده از عملگر لاپلاسین، و مقایسه با فیلتر وینر
+                </div>
+            </li>
+        </ul>
+
+        <div style="background-color: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 30px; border-right: 4px solid #4caf50;">
+            <h2 style="color: #2c3e50; margin-top: 0;">یادداشت</h2>
+            <p>برخی فایل‌های مربوط به انواع نویز (رایلی، ارلانگ، نمایی، یکنواخت، ضربه‌ای) و موضوعات دیگر در حال تکمیل هستند.</p>
+        </div>
+
+        <div class="footer">
+            <p>تهیه شده بر اساس فصل پنجم کتاب پردازش تصویر</p>
+            <p>دکتر ملیحه ثابتی - استادیار گروه کامپیوتر دانشگاه آزاد اسلامی واحد تهران شمال</p>
+        </div>
+    </div>
+</body>
+</html>
+

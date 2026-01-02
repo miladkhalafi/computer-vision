@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - تخمین تابع تنزل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="15_periodic_noise_reduction.html">قبلی: کاهش نویز متناوب</a>
+            <a href="18_inverse_filtering.html">بعدی: فیلتر معکوس</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: تخمین تابع تنزل</h1>
+        <div class="definition">
+            <h2>روش‌های تخمین مدل خرابی</h2>
+            <ul>
+                <li><strong>تخمین از طریق مشاهده تصویر</strong></li>
+                <li><strong>تخمین بوسیله آزمایش</strong></li>
+                <li><strong>تخمین بوسیله مدل‌سازی</strong></li>
+            </ul>
+        </div>
+        <h2>تخمین با استفاده از مشاهده</h2>
+        <div class="highlight">
+            <p>فرض کنید هیچ اطلاعاتی راجع به تابع تنزل $H$ نداریم. براساس این فرض که تصویر بوسیله یک فرایند خطی مستقل از مکان تنزل یافته، یک روش تخمین $H$، جمع‌آوری اطلاعات از خود تصویر است.</p>
+            <p>ابتدا در تصویر بدنبال ناحیه‌ای می‌گردیم که دارای سیگنال قوی $g_s(x,y)$ باشد. سپس:</p>
+        </div>
+        <div class="formula">$$H_s(u, v) = \frac{G_s(u, v)}{\hat{F}_s(u, v)}$$</div>
+        <div class="definition">
+            <p>سپس، تابع $H(u,v)$ را در مقیاس بزرگ اما با همان شکل می‌سازیم.</p>
+        </div>
+        <h2>تخمین با استفاده از آزمایش</h2>
+        <div class="highlight">
+            <p>اگر تجهیزاتی مشابه با تجهیزات مورد استفاده برای گرفتن تصویر تنزل یافته در اختیار باشد، می‌توان تخمین دقیقی از تابع تنزل را بدست آورد.</p>
+            <p>ضربه بوسیله نقطه‌ای نورانی شبیه‌سازی می‌شود. برای بدست آوردن پاسخ ضربه خرابی:</p>
+        </div>
+        <div class="formula">$$H(u, v) = \frac{G(u, v)}{A}$$</div>
+        <div class="definition">
+            <p>که $A$ ثابتی است که قدرت ضربه را توصیف می‌کند و تبدیل فوریه ضربه ثابت است.</p>
+        </div>
+        <h2>تخمین بوسیله مدل‌سازی تالطم جوی</h2>
+        <div class="formula">$$h(i, j) = \exp\left[-k \cdot (i^2 + j^2)^{5/6}\right]$$</div>
+        <div class="definition">
+            <p>که $k$ ثابتی است که به ماهیت تالطم بستگی دارد.</p>
+            <ul>
+                <li>تالطم شدید: $k = 0.0005$</li>
+                <li>تالطم متوسط: $k = 0.001$</li>
+                <li>تالطم پایین: $k = 0.00025$</li>
+            </ul>
+        </div>
+        <h2>تخمین بوسیله مدل‌سازی تاری ناشی از حرکت خطی</h2>
+        <div class="formula">$$g(x, y) = \int_0^T f[x - x_0(t), y - y_0(t)] dt$$</div>
+        <div class="formula">$$H(u, v) = \int_0^T e^{-j2\pi[ux_0(t) + vy_0(t)]} dt$$</div>
+        <div class="highlight">
+            <p>برای حرکت خطی یکنواخت در جهت $x$:</p>
+        </div>
+        <div class="formula">$$H(u, v) = \frac{\sin(\pi ua) e^{-j\pi ua}}{\pi ua}$$</div>
+        <div class="definition">
+            <p>برای حرکت در هر دو جهت $x$ و $y$:</p>
+        </div>
+        <div class="formula">$$H(u, v) = \frac{T \sin[\pi(ua + vb)] e^{-j\pi(ua + vb)}}{\pi(ua + vb)}$$</div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="18_inverse_filtering.html">فیلتر معکوس</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

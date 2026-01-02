@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - فیلتر وینر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="18_inverse_filtering.html">قبلی: فیلتر معکوس</a>
+            <a href="20_constrained_least_squares.html">بعدی: فیلتر کمترین مجذورات مقید</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: فیلتر وینر</h1>
+        <div class="definition">
+            <h2>فیلتر مینیمم میانگین مربع خطا (Wiener Filter)</h2>
+            <p>در این روش، تصاویر و نویز بعنوان متغیرهای تصادفی در نظر گرفته می‌شوند. هدف یافتن تخمین $\hat{f}$ از تصویر سالم $f$ است بطوری که خطای مربع میانگین بین آنها مینیمم شود:</p>
+        </div>
+        <div class="formula">$$e^2 = E[(f - \hat{f})^2]$$</div>
+        <div class="highlight">
+            <p>که $E\{.\}$ مقدار امید ریاضی آرگومان است.</p>
+        </div>
+        <h2>فرضیات</h2>
+        <div class="definition">
+            <ul>
+                <li>نویز و تصویر همبستگی ندارند</li>
+                <li>یکی از آنها دارای میانگین صفر است</li>
+                <li>سطوح شدت در تخمین، تابع خطی از این سطوح در تصویر تنزل یافته است</li>
+            </ul>
+        </div>
+        <h2>فرمول فیلتر وینر</h2>
+        <div class="formula">$$\hat{F}(u, v) = \left[ \frac{H^*(u, v)}{|H(u, v)|^2 + \frac{S_\eta(u, v)}{S_f(u, v)}} \right] G(u, v)$$</div>
+        <div class="formula">$$\hat{F}(u, v) = \left[ \frac{1}{H(u, v)} \cdot \frac{|H(u, v)|^2}{|H(u, v)|^2 + K} \right] G(u, v)$$</div>
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$S_\eta(u, v) = |N(u, v)|^2$</strong>: طیف قدرت نویز</li>
+                <li><strong>$S_f(u, v) = |F(u, v)|^2$</strong>: طیف قدرت تصویر اصلی خراب نشده</li>
+                <li><strong>$K$</strong>: مقدار ثابت (معمولاً نامعلوم)</li>
+            </ul>
+        </div>
+        <h2>ویژگی‌های فیلتر وینر</h2>
+        <div class="highlight">
+            <ul>
+                <li>فیلتر وینر، فیلتر مینیمم میانگین مربع خطا یا فیلتر کمترین مربع خطا نیز خوانده می‌شود</li>
+                <li>در صورت صفر بودن نویز، فیلتر وینر به فیلتر معکوس تبدیل می‌شود</li>
+                <li>امتیاز فیلتر وینر نسبت به روش معکوس در کاهش واریانس نویز مشهود است</li>
+            </ul>
+        </div>
+        <h2>مقایسه با فیلتر معکوس</h2>
+        <div class="definition">
+            <p>فیلتر وینر نتایج بهتری نسبت به فیلتر معکوس ارائه می‌دهد، خصوصاً زمانی که:</p>
+            <ul>
+                <li>نویز قابل توجهی وجود دارد</li>
+                <li>تابع تنزل مقادیر کوچک دارد</li>
+                <li>نیاز به بازیابی دقیق‌تر تصویر است</li>
+            </ul>
+        </div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="20_constrained_least_squares.html">فیلتر کمترین مجذورات مقید</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - حذف نویز مبتنی بر موجک</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="14_edge_detection.html">قبلی: تشخیص لبه</a>
+            <a href="16_wavelet_packets.html">بعدی: بسته‌های موجک</a>
+        </div>
+
+        <h1>حذف نویز مبتنی بر موجک</h1>
+
+        <div class="definition">
+            <h2>روش حذف نویز</h2>
+            <p>حذف نویز مبتنی بر موجک از تبدیل موجک برای حذف نویز از تصاویر استفاده می‌کند.</p>
+        </div>
+
+        <h2>مراحل حذف نویز</h2>
+        
+        <div class="highlight">
+            <h3>مرحله اول: محاسبه تبدیل موجک</h3>
+            <p>تبدیل موجک دو بعدی تصویر را محاسبه کنید.</p>
+            <ul>
+                <li>این تبدیل تصویر را به چهار زیرباند تقسیم می‌کند</li>
+                <li>نویز معمولاً در زیرباندهای جزئیات (HL, LH, HH) قرار دارد</li>
+            </ul>
+
+            <h3>مرحله دوم: آستانه‌گیری ضرایب جزئیات</h3>
+            <p>ضرایب جزئیات را آستانه‌گیری کنید:</p>
+            <ul>
+                <li>این به معنای <strong>صفر کردن</strong> عناصری است که مقادیر مطلق آنها کمتر از یک آستانه است</li>
+                <li>ضرایب کوچک معمولاً مربوط به نویز هستند</li>
+                <li>ضرایب بزرگ مربوط به اطلاعات مهم تصویر هستند</li>
+            </ul>
+
+            <h3>مرحله سوم: محاسبه تبدیل معکوس</h3>
+            <p>تبدیل معکوس را محاسبه کنید تا تصویر بدون نویز بدست آید.</p>
+            <p>اطلاعات حذف شده در اثنای بازسازی از بین می‌روند.</p>
+        </div>
+
+        <h2>انواع آستانه‌گیری</h2>
+        
+        <div class="definition">
+            <h3>آستانه‌گیری سخت (Hard Thresholding)</h3>
+            <ul>
+                <li>صفر کردن تمام ضرایب کوچکتر از آستانه</li>
+                <li>حفظ تمام ضرایب بزرگتر از آستانه</li>
+            </ul>
+
+            <h3>آستانه‌گیری نرم (Soft Thresholding)</h3>
+            <ul>
+                <li>کاهش مقدار ضرایب به جای صفر کردن</li>
+                <li>نتایج هموارتر اما با از دست دادن جزئیات بیشتر</li>
+            </ul>
+        </div>
+
+        <h2>انتخاب آستانه</h2>
+        
+        <div class="highlight">
+            <p>انتخاب آستانه مناسب مهم است:</p>
+            <ul>
+                <li><strong>آستانه کوچک:</strong> حذف نویز کمتر، حفظ جزئیات بیشتر</li>
+                <li><strong>آستانه بزرگ:</strong> حذف نویز بیشتر، از دست دادن جزئیات</li>
+                <li><strong>آستانه بهینه:</strong> تعادل بین حذف نویز و حفظ جزئیات</li>
+            </ul>
+        </div>
+
+        <h2>بازسازی‌های مختلف</h2>
+        
+        <div class="definition">
+            <p>بازسازی‌های مختلف پس از تعیین آستانه برای ضرایب جزئیات:</p>
+            <ul>
+                <li>هر آستانه متفاوت، نتیجه متفاوتی تولید می‌کند</li>
+                <li>باید آستانه مناسب را انتخاب کرد</li>
+            </ul>
+        </div>
+
+        <h2>مزایای روش موجک</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>حفظ جزئیات:</strong> حفظ جزئیات مهم تصویر</li>
+                <li><strong>حذف موثر نویز:</strong> حذف موثر نویز از تصویر</li>
+                <li><strong>تحلیل چند مقیاسی:</strong> حذف نویز در سطوح مختلف</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه با روش‌های دیگر</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>فیلترهای خطی:</strong> ساده اما مات کردن تصویر</li>
+                <li><strong>فیلترهای غیرخطی:</strong> بهتر اما پیچیده‌تر</li>
+                <li><strong>روش موجک:</strong> تعادل خوب بین سادگی و کارایی</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>پردازش تصویر:</strong> حذف نویز از تصاویر</li>
+                <li><strong>پردازش سیگنال:</strong> حذف نویز از سیگنال‌ها</li>
+                <li><strong>پردازش تصاویر پزشکی:</strong> بهبود کیفیت تصاویر پزشکی</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="16_wavelet_packets.html">بسته‌های موجک</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

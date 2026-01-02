@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>فهرست مطالب - فصل ششم: تبدیل موجک</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+        .topic-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 5px solid #3498db;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .topic-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-right-color: #2980b9;
+        }
+        .topic-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            display: block;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .topic-item a:hover {
+            color: #3498db;
+        }
+        .topic-description {
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .chapter-info {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-right: 4px solid #3498db;
+        }
+        .chapter-info h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            color: #7f8c8d;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← بازگشت به فهرست فصول</a>
+        
+        <h1>فصل ششم: تبدیل موجک</h1>
+        <div class="subtitle">پردازش چند دقتی و تبدیل موجک</div>
+
+        <div class="chapter-info">
+            <h2>درباره این فصل</h2>
+            <p>این فصل به بررسی <strong>تبدیل موجک (Wavelet Transform)</strong> می‌پردازد. تبدیل موجک یک ابزار قدرتمند برای پردازش چند دقتی تصاویر است که امکان تحلیل تصاویر در سطوح مختلف دقت را فراهم می‌کند. در این فصل با مفاهیم هرم تصویری، بانک فیلتر، تبدیل موجک گسسته (DWT)، تبدیل موجک سریع (FWT)، و کاربردهای آن در تشخیص لبه و حذف نویز آشنا می‌شوید.</p>
+        </div>
+
+        <ul class="topic-list">
+            <li class="topic-item">
+                <a href="01_introduction.html">1. مقدمه تبدیل موجک</a>
+                <div class="topic-description">
+                    آشنایی با مفهوم تبدیل موجک، انگیزه پردازش چند دقتی، و تغییرات آماری محلی در تصاویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="02_image_pyramids.html">2. هرم تصویری</a>
+                <div class="topic-description">
+                    ساختار هرم تصویری، سطوح مختلف دقت، و کاربردهای آن در تحلیل تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="03_pyramid_types.html">3. هرم‌های پسماند پیشگویی و تقریب</a>
+                <div class="topic-description">
+                    هرم‌های پسماند پیشگویی، هرم‌های تقریب، و روش‌های ساخت آنها
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="04_filter_banks.html">4. بانک فیلتر</a>
+                <div class="topic-description">
+                    بانک فیلتر تحلیل و ترکیبی، فیلترهای پایین‌گذر و بالا‌گذر، و بازسازی کامل
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="05_orthogonal_filters.html">5. فیلترهای متعامد و دو تعامدی</a>
+                <div class="topic-description">
+                    فیلترهای متعامد و دو تعامدی یک بعدی، فیلترهای تفکیک‌پذیر دوبعدی، و زیرباندهای تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="06_daubechies.html">6. فیلتر متعامد Daubechies</a>
+                <div class="topic-description">
+                    فیلترهای متعامد Daubechies، پاسخ ضربه، و خواص تعامد و دو تعامدی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="07_four_band.html">7. تقسیم چهار باندی</a>
+                <div class="topic-description">
+                    تقسیم تصویر به چهار زیرباند: تخمین، جزئیات عمودی، جزئیات افقی، و جزئیات قطری
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="08_haar_transform.html">8. تبدیل Haar</a>
+                <div class="topic-description">
+                    تبدیل Haar، نمایش ماتریسی، و استفاده از آن در بانک فیلتر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="09_wavelet_series.html">9. بسط سری‌های موجک</a>
+                <div class="topic-description">
+                    بسط تابع با استفاده از توابع مقیاس‌بندی و موجک، ضرایب تخمین و جزئیات
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="10_dwt.html">10. تبدیل موجک گسسته (DWT)</a>
+                <div class="topic-description">
+                    تبدیل موجک گسسته، محاسبه ضرایب، و بازسازی تصویر از ضرایب
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="11_fwt.html">11. تبدیل موجک سریع (FWT)</a>
+                <div class="topic-description">
+                    پیاده‌سازی کارآمد DWT، رابطه بین ضرایب و مقیاس‌های همجوار، و معادلات FWT
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="12_fwt_equations.html">12. معادلات تبدیل موجک سریع</a>
+                <div class="topic-description">
+                    معادلات تعریف‌کننده FWT، بانک فیلتر تحلیل و ترکیبی، و ساختارهای چند مرحله‌ای
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="17_time_frequency_uncertainty.html">17. اصل عدم قطعیت زمان-فرکانس</a>
+                <div class="topic-description">
+                    رابطه بین دقت زمانی و فرکانسی، مقایسه با تبدیل فوریه، و مزایای تبدیل موجک
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="13_2d_wavelets.html">13. تبدیلات موجک در دو بعد</a>
+                <div class="topic-description">
+                    تبدیل موجک دو بعدی، جزئیات افقی، عمودی و قطری، و FWT چند مقیاسی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="14_edge_detection.html">14. تشخیص لبه مبتنی بر موجک</a>
+                <div class="topic-description">
+                    استفاده از تبدیل موجک برای تشخیص لبه، تغییر ضرایب، و ارتقای لبه
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="15_noise_removal.html">15. حذف نویز مبتنی بر موجک</a>
+                <div class="topic-description">
+                    حذف نویز با استفاده از تبدیل موجک، آستانه‌گیری ضرایب جزئیات، و بازسازی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="16_wavelet_packets.html">16. بسته‌های موجک</a>
+                <div class="topic-description">
+                    بسته‌های موجک، درخت تحلیل، تقسیم‌بندی انعطاف‌پذیر صفحه زمان-فرکانس، و الگوریتم‌های بهینه‌سازی
+                </div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p>تهیه شده بر اساس فصل ششم کتاب پردازش تصویر</p>
+            <p>دکتر ملیحه ثابتی - استادیار گروه کامپیوتر دانشگاه آزاد اسلامی واحد تهران شمال</p>
+        </div>
+    </div>
+</body>
+</html>
+

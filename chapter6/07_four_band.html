@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - تقسیم چهار باندی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="06_daubechies.html">قبلی: فیلتر Daubechies</a>
+            <a href="08_haar_transform.html">بعدی: تبدیل Haar</a>
+        </div>
+
+        <h1>تقسیم چهار باندی</h1>
+
+        <div class="definition">
+            <h2>تعریف تقسیم چهار باندی</h2>
+            <p>در تبدیل موجک دو بعدی، تصویر به <strong>چهار زیرباند</strong> تقسیم می‌شود که هر کدام اطلاعات خاصی از تصویر را نگه می‌دارند.</p>
+        </div>
+
+        <h2>چهار زیرباند</h2>
+        
+        <div class="highlight">
+            <h3>1. تخمین (Approximation - LL)</h3>
+            <ul>
+                <li>اطلاعات فرکانس پایین در هر دو جهت</li>
+                <li>نمایش کلی تصویر با دقت پایین</li>
+                <li>می‌تواند دوباره به چهار زیرباند تقسیم شود</li>
+            </ul>
+
+            <h3>2. جزئیات عمودی (Vertical Details - LH)</h3>
+            <ul>
+                <li>اطلاعات فرکانس پایین در جهت افقی</li>
+                <li>اطلاعات فرکانس بالا در جهت عمودی</li>
+                <li>لبه‌های افقی را نشان می‌دهد</li>
+            </ul>
+
+            <h3>3. جزئیات افقی (Horizontal Details - HL)</h3>
+            <ul>
+                <li>اطلاعات فرکانس بالا در جهت افقی</li>
+                <li>اطلاعات فرکانس پایین در جهت عمودی</li>
+                <li>لبه‌های عمودی را نشان می‌دهد</li>
+            </ul>
+
+            <h3>4. جزئیات قطری (Diagonal Details - HH)</h3>
+            <ul>
+                <li>اطلاعات فرکانس بالا در هر دو جهت</li>
+                <li>جزئیات و لبه‌های قطری را نشان می‌دهد</li>
+            </ul>
+        </div>
+
+        <h2>ساختار تقسیم</h2>
+        
+        <div class="definition">
+            <p>تصویر اصلی به صورت زیر تقسیم می‌شود:</p>
+            <pre style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 5px;">
+[LL | HL]
+[LH | HH]
+            </pre>
+            <ul>
+                <li><strong>LL:</strong> تخمین (Approximation)</li>
+                <li><strong>HL:</strong> جزئیات افقی (Horizontal Details)</li>
+                <li><strong>LH:</strong> جزئیات عمودی (Vertical Details)</li>
+                <li><strong>HH:</strong> جزئیات قطری (Diagonal Details)</li>
+            </ul>
+        </div>
+
+        <h2>تقسیم تکراری</h2>
+        
+        <div class="highlight">
+            <p>زیرباند تخمین (LL) می‌تواند دوباره به چهار زیرباند تقسیم شود:</p>
+            <ul>
+                <li>این روند می‌تواند ادامه یابد</li>
+                <li>امکان تحلیل چند مقیاسی را فراهم می‌کند</li>
+                <li>هر سطح تقسیم، یک سطح دقت را نشان می‌دهد</li>
+            </ul>
+        </div>
+
+        <h2>کاربردهای تقسیم چهار باندی</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>فشرده‌سازی:</strong> ذخیره‌سازی کارآمد با تمرکز بر زیرباند تخمین</li>
+                <li><strong>حذف نویز:</strong> حذف نویز از زیرباندهای جزئیات</li>
+                <li><strong>تشخیص لبه:</strong> استفاده از زیرباندهای جزئیات برای تشخیص لبه</li>
+                <li><strong>تحلیل چند مقیاسی:</strong> تحلیل تصویر در سطوح مختلف</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="08_haar_transform.html">تبدیل Haar</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

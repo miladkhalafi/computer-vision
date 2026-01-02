@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - فیلترهای مرتبه آماری</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="12_mean_filters.html">قبلی: فیلترهای میانگین</a>
+            <a href="14_adaptive_filters.html">بعدی: فیلترهای تطبیقی</a>
+        </div>
+        <h1>فصل پنجم – بازیابی تصویر: فیلترهای مرتبه آماری</h1>
+        <h2>فیلتر میانه</h2>
+        <div class="formula">$$\hat{f}(x, y) = \text{median}\{g(s, t) | (s,t) \in S_{xy}\}$$</div>
+        <div class="definition">
+            <h3>ویژگی‌های فیلتر میانه</h3>
+            <ul>
+                <li>معروف‌ترین فیلتر مرتبه آماری</li>
+                <li>به جای مقدار یک پیکسل، میانه سطوح شدت در همسایگی آن پیکسل را قرار می‌دهد</li>
+                <li>برای بعضی از انواع نویز تصادفی، قابلیت‌های هوشمند کاهش نویز را فراهم می‌کند</li>
+                <li>نسبت به فیلترهای هموار ساز خطی هم اندازه، تصویر را کمتر مات می‌کند</li>
+                <li>خصوصاً با حضور نویز ضربه‌ای تک قطبی و دو قطبی موثر است</li>
+            </ul>
+        </div>
+        <h2>فیلتر Max و Min</h2>
+        <div class="formula">$$\hat{f}(x, y) = \max\{g(s, t) | (s,t) \in S_{xy}\}$$</div>
+        <div class="formula">$$\hat{f}(x, y) = \min\{g(s, t) | (s,t) \in S_{xy}\}$$</div>
+        <div class="highlight">
+            <ul>
+                <li><strong>فیلتر Max:</strong> برای یافتن روشن‌ترین نقاط در تصویر بکار می‌رود. چون نویز فلفلی مقادیر بسیار پایینی دارد، با فرایند انتخاب max کاهش می‌یابد</li>
+                <li><strong>فیلتر Min:</strong> برای یافتن تاریک‌ترین نقاط در تصویر بکار می‌رود. عملیات min موجب کاهش نویز نمکی می‌شود</li>
+            </ul>
+        </div>
+        <h2>فیلتر نقطه میانی</h2>
+        <div class="formula">$$\hat{f}(x, y) = \frac{1}{2} \left[ \max\{g(s, t)\} + \min\{g(s, t)\} \right]$$</div>
+        <div class="definition">
+            <p>این فیلتر، فیلترهای مرتبه آماری و میانگین‌گیری را ترکیب می‌کند. برای نویز توزیع شده مثل نویز یکنواخت و گوسی خوب کار می‌کند.</p>
+        </div>
+        <h2>فیلتر میانگین حذف آلفا</h2>
+        <div class="formula">$$\hat{f}(x, y) = \frac{1}{mn-d} \sum_{(s,t) \in S_{xy}} g_r(s, t)$$</div>
+        <div class="highlight">
+            <p>فرض کنید $d/2$ از پایین‌ترین و $d/2$ از بالاترین مقادیر شدت $g(s,t)$ را در همسایگی $S_{xy}$ حذف کردیم. $g_r(s,t)$ بقیه $mn-d$ پیکسل را نشان می‌دهد.</p>
+            <ul>
+                <li>زمانی که $d=0$: به فیلتر میانگین حسابی تبدیل می‌شود</li>
+                <li>اگر $d=m-1$: به فیلتر میانه تبدیل می‌گردد</li>
+                <li>در وضعیت‌هایی مفید است که شامل انواع گوناگونی از نویز است (مثل ترکیب نویز گوسی و نمک و فلفل)</li>
+            </ul>
+        </div>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="14_adaptive_filters.html">فیلترهای تطبیقی</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

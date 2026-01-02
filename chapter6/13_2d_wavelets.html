@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - تبدیلات موجک در دو بعد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="12_fwt_equations.html">قبلی: معادلات FWT</a>
+            <a href="14_edge_detection.html">بعدی: تشخیص لبه مبتنی بر موجک</a>
+        </div>
+
+        <h1>تبدیلات موجک در دو بعد</h1>
+
+        <div class="definition">
+            <h2>تبدیل موجک دو بعدی</h2>
+            <p>در حالت دوبعدی، سه مجموعه از ضرایب جزئیات را انتخاب می‌کنیم: <strong>جزئیات افقی</strong>، <strong>عمودی</strong> و <strong>قطری</strong>.</p>
+        </div>
+
+        <h2>ساختار تبدیل دو بعدی</h2>
+        
+        <div class="highlight">
+            <p>تبدیل موجک دو بعدی شامل:</p>
+            <ul>
+                <li><strong>بانک فیلتر تحلیل:</strong> برای تجزیه تصویر</li>
+                <li><strong>بانک فیلتر ترکیبی:</strong> برای بازسازی تصویر</li>
+                <li><strong>چهار زیرباند:</strong> تخمین، جزئیات افقی، عمودی و قطری</li>
+            </ul>
+        </div>
+
+        <h2>FWT چند مقیاسی</h2>
+        
+        <div class="definition">
+            <p>FWT می‌تواند در چندین مقیاس اعمال شود:</p>
+            <ul>
+                <li><strong>FWT یک مقیاسی:</strong> یک سطح تقسیم</li>
+                <li><strong>FWT دو مقیاسی:</strong> دو سطح تقسیم</li>
+                <li><strong>FWT سه مقیاسی:</strong> سه سطح تقسیم</li>
+            </ul>
+            <p>هر چه تعداد مقیاس‌ها بیشتر باشد، تحلیل دقیق‌تر اما محاسبات بیشتر است.</p>
+        </div>
+
+        <h2>ویژگی‌های تقسیم فرکانس</h2>
+        
+        <div class="highlight">
+            <p>در تبدیل موجک دو بعدی:</p>
+            <ul>
+                <li>هر سطح تقسیم، فرکانس‌ها را به صورت لگاریتمی تقسیم می‌کند</li>
+                <li>زیرباند تخمین (LL) می‌تواند دوباره تقسیم شود</li>
+                <li>این امکان تحلیل چند مقیاسی را فراهم می‌کند</li>
+            </ul>
+        </div>
+
+        <h2>مزایای تبدیل دو بعدی</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>تحلیل چند مقیاسی:</strong> تحلیل در سطوح مختلف دقت</li>
+                <li><strong>جداسازی اطلاعات:</strong> جداسازی تخمین و جزئیات</li>
+                <li><strong>کارایی:</strong> محاسبات کارآمد با استفاده از فیلترهای تفکیک‌پذیر</li>
+                <li><strong>فشرده‌سازی:</strong> قابلیت فشرده‌سازی بالا</li>
+            </ul>
+        </div>
+
+        <h2>کاربردهای تبدیل دو بعدی</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>فشرده‌سازی تصویر:</strong> JPEG 2000</li>
+                <li><strong>حذف نویز:</strong> حذف نویز از تصاویر</li>
+                <li><strong>تشخیص لبه:</strong> تشخیص لبه در سطوح مختلف</li>
+                <li><strong>تحلیل بافت:</strong> تحلیل بافت تصویر</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه با تبدیل فوریه دو بعدی</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>DFT 2D:</strong> تحلیل فرکانسی کامل اما بدون اطلاعات مکانی</li>
+                <li><strong>DWT 2D:</strong> تحلیل همزمان مکانی-فرکانسی</li>
+                <li><strong>مزیت DWT:</strong> امکان تحلیل محلی در مکان و فرکانس</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="14_edge_detection.html">تشخیص لبه مبتنی بر موجک</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

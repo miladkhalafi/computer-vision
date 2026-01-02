@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل پنجم - خواص نویز</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="03_quality_metrics.html">قبلی: معیارهای کیفیت</a>
+            <a href="05_gaussian_noise.html">بعدی: نویز گوسی</a>
+        </div>
+
+        <h1>فصل پنجم – بازیابی تصویر: خواص نویز</h1>
+
+        <div class="definition">
+            <h2>خواص فرکانسی نویز</h2>
+            <p><strong>نویز سفید:</strong> وقتی طیف فوریه نویز ثابت است، نویز را سفید گویند.</p>
+            <p>در نویز سفید، تمام فرکانس‌ها با قدرت یکسان حضور دارند.</p>
+        </div>
+
+        <h2>خواص مکانی نویز</h2>
+        
+        <div class="highlight">
+            <p>در این فصل فرض می‌کنیم که:</p>
+            <ul>
+                <li>نویز <strong>مستقل از مختصات مکانی</strong> است</li>
+                <li>نویز با خود تصویر <strong>همبستگی ندارد</strong></li>
+                <li>یعنی بین مقادیر پیکسل و مقادیر مولفه‌های نویز، همبستگی وجود ندارد</li>
+            </ul>
+        </div>
+
+        <h2>توابع مهم چگالی احتمال نویز</h2>
+        
+        <div class="definition">
+            <p>انواع مختلف نویز در پردازش تصویر:</p>
+            <ul>
+                <li><strong>نویز گوسی</strong> (Gaussian Noise)</li>
+                <li><strong>نویز رایلی</strong> (Rayleigh Noise)</li>
+                <li><strong>نویز ارلانگ</strong> (Erlang/Gamma Noise)</li>
+                <li><strong>نویز توانی</strong> (Exponential Noise)</li>
+                <li><strong>نویز یکنواخت</strong> (Uniform Noise)</li>
+                <li><strong>نویز ضربه‌ای</strong> (Impulse/Salt and Pepper Noise)</li>
+            </ul>
+        </div>
+
+        <h2>نویز متناوب (Periodic Noise)</h2>
+        
+        <div class="highlight">
+            <h3>ویژگی‌های نویز متناوب</h3>
+            <ul>
+                <li>نویز متناوب در یک تصویر، ناشی از <strong>تداخل الکترومغناطیسی یا الکتریکی</strong> در اثنای تصویربرداری است</li>
+                <li>این نویز تنها نویز وابسته به مکان است که در این فصل بررسی خواهد شد</li>
+                <li>نویز متناوب می‌تواند از طریق <strong>فیلتر کردن حوزه فرکانس</strong> کاهش یابد</li>
+            </ul>
+        </div>
+
+        <h2>برآورد پارامترهای نویز</h2>
+        
+        <div class="definition">
+            <h3>روش‌های برآورد تابع چگالی احتمال نویز:</h3>
+            <ul>
+                <li><strong>بر اساس مدل کردن:</strong> مشخصات حسگر</li>
+                <li><strong>بر اساس آزمایش:</strong> در صورت در دسترس بودن دوربین، تهیه تصاویری از یک صحنه یکنواخت</li>
+                <li><strong>بر اساس مشاهده:</strong> اگر تنها تصویر نویزی در دسترس است، انتخاب بخش از تصویر که مربوط به یک صحنه یکنواخت باشد</li>
+            </ul>
+        </div>
+
+        <h2>تخمین میانگین و واریانس</h2>
+        
+        <div class="formula">
+            $$\hat{\mu} = \frac{1}{N_S} \sum_{(x_i, y_i) \in S} z(x_i, y_i)$$
+        </div>
+
+        <div class="formula">
+            $$\hat{\sigma}^2 = \frac{1}{N_S - 1} \sum_{(x_i, y_i) \in S} [z(x_i, y_i) - \hat{\mu}]^2$$
+        </div>
+
+        <div class="highlight">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$S$</strong>: زیر تصویر با صحنه‌ای ساده</li>
+                <li><strong>$N_S$</strong>: تعداد پیکسل‌های در $S$</li>
+                <li><strong>$z(x_i, y_i)$</strong>: مقدار شدت پیکسل در موقعیت $(x_i, y_i)$</li>
+            </ul>
+            <p>در بیشتر موارد، فقط نیاز به تخمین میانگین و واریانس است و بقیه پارامترها را می‌توان با استفاده از میانگین و واریانس تخمین زد.</p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="05_gaussian_noise.html">نویز گوسی</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

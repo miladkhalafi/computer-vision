@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - تبدیل موجک سریع (FWT)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="10_dwt.html">قبلی: تبدیل موجک گسسته</a>
+            <a href="12_fwt_equations.html">بعدی: معادلات FWT</a>
+        </div>
+
+        <h1>تبدیل موجک سریع (FWT)</h1>
+
+        <div class="definition">
+            <h2>تعریف FWT</h2>
+            <p><strong>تبدیل موجک سریع (Fast Wavelet Transform - FWT)</strong> پیاده‌سازی کارآمدی از تبدیل موجک گسسته (DWT) است که رابطه عجیب ولی خوبی را بین ضرایب DWT و مقیاس‌های همجوار نشان می‌دهد.</p>
+        </div>
+
+        <h2>رابطه بین مقیاس‌ها</h2>
+        
+        <div class="formula">
+            <p>تابع مقیاس‌بندی:</p>
+            <p>$$\phi(x) = \sum_n h_{\phi}(n) \sqrt{2} \phi(2x - n)$$</p>
+        </div>
+
+        <div class="highlight">
+            <p>با مقیاس‌بندی $x$ توسط $2^j$ و انتقال آن به میزان $k$، و با قرار دادن $m = 2k + n$ خواهیم داشت:</p>
+            <div class="formula">
+                <p>$$\phi(2^j x - k) = \sum_m h_{\phi}(m - 2k) \sqrt{2} \phi(2^{j+1} x - m)$$</p>
+                <p>$$\psi(2^j x - k) = \sum_m h_{\psi}(m - 2k) \sqrt{2} \phi(2^{j+1} x - m)$$</p>
+            </div>
+        </div>
+
+        <h2>مزایای FWT</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>کارایی محاسباتی:</strong> پیاده‌سازی سریع‌تر از DWT مستقیم</li>
+                <li><strong>رابطه بازگشتی:</strong> استفاده از رابطه بین مقیاس‌های همجوار</li>
+                <li><strong>کاهش پیچیدگی:</strong> پیچیدگی محاسباتی $O(N)$ به جای $O(N^2)$</li>
+            </ul>
+        </div>
+
+        <h2>ساختار FWT</h2>
+        
+        <div class="highlight">
+            <p>FWT از ساختار بانک فیلتر استفاده می‌کند:</p>
+            <ul>
+                <li>فیلترهای تحلیل برای تجزیه</li>
+                <li>فیلترهای ترکیبی برای بازسازی</li>
+                <li>امکان تکرار برای ساختارهای چند مرحله‌ای</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه با FFT</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>FFT:</strong> پیاده‌سازی سریع تبدیل فوریه</li>
+                <li><strong>FWT:</strong> پیاده‌سازی سریع تبدیل موجک</li>
+                <li><strong>مزیت FWT:</strong> تحلیل همزمان زمانی-فرکانسی</li>
+            </ul>
+        </div>
+
+        <h2>کاربردهای FWT</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>پردازش تصویر:</strong> پردازش سریع تصاویر</li>
+                <li><strong>فشرده‌سازی:</strong> فشرده‌سازی کارآمد</li>
+                <li><strong>حذف نویز:</strong> حذف نویز سریع</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="12_fwt_equations.html">معادلات تبدیل موجک سریع</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

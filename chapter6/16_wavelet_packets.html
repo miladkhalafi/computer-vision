@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل ششم - بسته‌های موجک</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; }
+        body { font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif; line-height: 1.8; max-width: 1200px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
+        .container { background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-right: 4px solid #3498db; padding-right: 15px; }
+        .formula { background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; text-align: center; font-size: 1.1em; border-right: 3px solid #3498db; }
+        .highlight { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; border-right: 3px solid #ffc107; }
+        .definition { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-right: 3px solid #2196F3; }
+        ul, ol { margin: 15px 0; padding-right: 30px; }
+        li { margin: 8px 0; }
+        .nav { background-color: #34495e; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { color: white; text-decoration: none; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };</script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="15_noise_removal.html">قبلی: حذف نویز</a>
+        </div>
+
+        <h1>بسته‌های موجک (Wavelet Packets)</h1>
+
+        <div class="definition">
+            <h2>تعریف بسته‌های موجک</h2>
+            <p><strong>بسته‌های موجک (Wavelet Packets)</strong> تعمیمی از تبدیل موجک سریع هستند که تجزیه قابل انعطاف‌تری را ارائه می‌دهند.</p>
+        </div>
+
+        <h2>محدودیت FWT</h2>
+        
+        <div class="highlight">
+            <p>تبدیل موجک سریع (FWT):</p>
+            <ul>
+                <li>تابعی را به مجموع توابع موجک و مقیاس‌بندی تجزیه می‌کند</li>
+                <li>پهنای باند آنها به طور لگاریتمی به هم ربط دارند</li>
+                <li>محتوای فرکانسی پایین با پهنای باند باریک نمایش داده می‌شود</li>
+                <li>محتوای فرکانسی بالا با پهنای باند بیشتر نمایش داده می‌شود</li>
+            </ul>
+        </div>
+
+        <h2>نیاز به کنترل بیشتر</h2>
+        
+        <div class="definition">
+            <p>اگر نیازمند کنترل بیشتری روی تقسیم‌بندی صفحه زمان-فرکانس باشیم (مثال: باندهای کوچکتر در فرکانس‌های بالاتر)، FWT باید تعمیم یابد تا تجزیه قابل انعطاف‌تری به نام <strong>بسته موجک</strong> بوجود آید.</p>
+        </div>
+
+        <h2>درخت تحلیل</h2>
+        
+        <div class="highlight">
+            <p>درخت‌های تحلیل راهکار موثری برای نمایش بسته‌های موجک هستند:</p>
+            <ul>
+                <li>بسته‌های موجک چیزی بیش از تبدیلات موجک معمولی نیستند</li>
+                <li>در آنها جزئیات به طور تکراری فیلتر می‌شوند</li>
+                <li>درخت تحلیل شکل (الف) به درخت تحلیل (ب) تبدیل می‌شود</li>
+            </ul>
+        </div>
+
+        <h2>ویژگی‌های تقسیم‌بندی</h2>
+        
+        <div class="definition">
+            <p>بسته‌های موجک:</p>
+            <ul>
+                <li>چندین تجزیه را عرضه می‌کنند</li>
+                <li>تعداد تجزیه‌های ممکن اغلب به حدی زیاد است که شمارش یا امتحان کردن هر یک از آنها غیر عملی است</li>
+                <li>معمولاً به یک الگوریتم کارآمد برای یافتن تجزیه‌ها برای کاربردهای خاص نیاز است</li>
+            </ul>
+        </div>
+
+        <h2>توابع مبتنی بر انرژی و آنتروپی</h2>
+        
+        <div class="highlight">
+            <p>توابع مبتنی بر انرژی و آنتروپی در بسیاری از وضعیت‌ها قابل استفاده‌اند:</p>
+            <ul>
+                <li><strong>انرژی:</strong> معیاری از محتوای انرژی تابع</li>
+                <li><strong>آنتروپی:</strong> معیاری از پیچیدگی تابع</li>
+            </ul>
+        </div>
+
+        <h2>الگوریتم بهینه‌سازی</h2>
+        
+        <div class="definition">
+            <p>یک الگوریتم کارآمد برای یافتن راه حل‌های حداقل انرژی:</p>
+            <ol>
+                <li><strong>برای هر گره از درخت تحلیل:</strong> از ریشه شروع کرده و سطح به سطح به سمت برگ‌ها بروید</li>
+                <li><strong>مرحله اول:</strong> انرژی هر گره و چهار فرزند آن را بدست آورید</li>
+                <li><strong>مرحله دوم:</strong> اگر مجموع انرژی‌های فرزندان کمتر از انرژی والد باشد، فرزندان را در درخت تحلیل قرار دهید. اگر مجموع انرژی فرزندان بزرگتر یا مساوی انرژی والد باشد، فرزندان را هرس کنید و فقط والد را نگه دارید. این گره برگ درخت تحلیل بهینه شده است.</li>
+            </ol>
+        </div>
+
+        <h2>معیار انرژی</h2>
+        
+        <div class="formula">
+            <p>یک معیار ممکن از محتوای انرژی تابع:</p>
+            <p>$$E_f = \sum_{m,n} |f(m,n)|^2$$</p>
+        </div>
+
+        <div class="highlight">
+            <p>مقادیر بالای $E$ نشان دهنده توابعی با چندین مقدار غیر صفر است. از آنجایی که اغلب طرح‌های فشرده‌سازی بوسیله آستانه‌گیری ضرایب کوچک به صفر کار می‌کنند، تابع هزینه‌ای که تعداد مقادیر نزدیک به صفر را بیشینه کند، معیار معقولی از دیدگاه فشرده‌سازی می‌باشد.</p>
+        </div>
+
+        <h2>مزایای بسته‌های موجک</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>انعطاف‌پذیری:</strong> کنترل بیشتر روی تقسیم‌بندی صفحه زمان-فرکانس</li>
+                <li><strong>بهینه‌سازی:</strong> امکان یافتن تجزیه بهینه برای کاربرد خاص</li>
+                <li><strong>کارایی:</strong> کارایی بالا در فشرده‌سازی و پردازش</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>فشرده‌سازی:</strong> فشرده‌سازی بهینه تصاویر و سیگنال‌ها</li>
+                <li><strong>پردازش سیگنال:</strong> تحلیل سیگنال‌های پیچیده</li>
+                <li><strong>تشخیص الگو:</strong> تشخیص الگوهای پیچیده</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>بازگشت به:</strong> <a href="index.html">فهرست مطالب</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
