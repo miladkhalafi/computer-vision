@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>فصل سوم - تبدیلات پایه شدت</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Vazir', Courier New, monospace;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table td, table th {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        table th {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="01_introduction.html">مقدمه</a>
+            <a href="02_basic_transformations.html">تبدیلات پایه</a>
+        </div>
+
+        <h1>فصل سوم – تبدیلات پایه شدت</h1>
+
+        <h2>انواع توابع تبدیل پایه</h2>
+        <ol>
+            <li><strong>تبدیلات خطی</strong> (تبدیلات نگاتیو و همانی)</li>
+            <li><strong>تبدیلات لگاریتمی</strong> (تبدیل لگاریتمی و معکوس آن)</li>
+            <li><strong>قانون توان</strong> (تبدیلات ریشه n ام و توان n ام)</li>
+        </ol>
+
+        <h2>1. نگاتیو تصاویر (Image Negative)</h2>
+        
+        <div class="definition">
+            <p>نگاتیو تصویری که سطوح شدت آن در بازه $[0,L-1]$ است به صورت زیر بدست می‌آید:</p>
+        </div>
+
+        <div class="formula">
+            $$s = L - 1 - r$$
+        </div>
+
+        <p>که در آن:</p>
+        <ul>
+            <li><strong>$r$</strong>: مقدار شدت پیکسل ورودی</li>
+            <li><strong>$s$</strong>: مقدار شدت پیکسل خروجی</li>
+            <li><strong>$L$</strong>: تعداد سطوح شدت (معمولاً 256 برای تصاویر 8 بیتی)</li>
+        </ul>
+
+        <div class="highlight">
+            <p><strong>کاربرد:</strong> این نوع پردازش معمولاً برای ارتقای بخش سفید یا خاکستری موجود در مناطق تاریک تصویر مناسب است.</p>
+        </div>
+
+        <h3>مثال کد MATLAB</h3>
+        <div class="code-block">
+I = imread('airplane.tif');
+imshow(I);
+h = imhist(I);
+figure;
+bar(h);
+title('Histogram of Org');
+figure;
+c = imcomplement(I);
+imshow(c);
+h2 = imhist(c);
+figure;
+bar(h2);
+title('Histogram of Negative');
+        </div>
+
+        <h2>2. تبدیلات لگاریتمی (Logarithmic Transformations)</h2>
+
+        <h3>تبدیل لگاریتمی</h3>
+        <p>تبدیل لگاریتمی به صورت زیر تعریف می‌شود:</p>
+        
+        <div class="formula">
+            $$s = c \cdot \log(1 + r)$$
+        </div>
+
+        <p>که در آن:</p>
+        <ul>
+            <li><strong>$c$</strong>: یک ثابت مقیاس‌گذاری</li>
+            <li><strong>$r$</strong>: مقدار شدت پیکسل ورودی</li>
+            <li><strong>$s$</strong>: مقدار شدت پیکسل خروجی</li>
+        </ul>
+
+        <div class="highlight">
+            <p><strong>ویژگی‌ها:</strong></p>
+            <ul>
+                <li>تبدیل لگاریتمی، بازه محدودی از مقادیر ورودی را به بازه گسترده‌تری از مقادیر خروجی نگاشت می‌کند.</li>
+                <li>برای گسترش مقادیر تاریک در تصویر و فشرده کردن مقادیر روشن مفید است.</li>
+                <li>معمولاً برای نمایش طیف دینامیکی تصاویر استفاده می‌شود.</li>
+            </ul>
+        </div>
+
+        <h3>تبدیل معکوس لگاریتمی</h3>
+        <p>تبدیل معکوس لگاریتمی به صورت زیر تعریف می‌شود:</p>
+        
+        <div class="formula">
+            $$s = c \cdot (e^r - 1)$$
+        </div>
+
+        <div class="highlight">
+            <p><strong>کاربرد:</strong> این تبدیل برای فشرده کردن مقادیر روشن و گسترش مقادیر تاریک استفاده می‌شود (برعکس تبدیل لگاریتمی).</p>
+        </div>
+
+        <h2>3. قانون توان (Power Law / Gamma Transformations)</h2>
+
+        <p>تبدیلات قانون توان به صورت زیر تعریف می‌شوند:</p>
+        
+        <div class="formula">
+            $$s = c \cdot r^\gamma$$
+        </div>
+
+        <p>که در آن:</p>
+        <ul>
+            <li><strong>$c$</strong>: یک ثابت مثبت</li>
+            <li><strong>$\gamma$</strong>: پارامتر گاما</li>
+            <li><strong>$r$</strong>: مقدار شدت پیکسل ورودی (نرمال‌سازی شده به بازه $[0,1]$)</li>
+            <li><strong>$s$</strong>: مقدار شدت پیکسل خروجی</li>
+        </ul>
+
+        <h3>انواع تبدیلات قانون توان</h3>
+
+        <table>
+            <tr>
+                <th>مقدار $\gamma$</th>
+                <th>نوع تبدیل</th>
+                <th>تأثیر</th>
+            </tr>
+            <tr>
+                <td>$\gamma < 1$</td>
+                <td>ریشه n ام</td>
+                <td>گسترش مقادیر تاریک، فشرده کردن مقادیر روشن</td>
+            </tr>
+            <tr>
+                <td>$\gamma = 1$</td>
+                <td>همانی</td>
+                <td>بدون تغییر</td>
+            </tr>
+            <tr>
+                <td>$\gamma > 1$</td>
+                <td>توان n ام</td>
+                <td>فشرده کردن مقادیر تاریک، گسترش مقادیر روشن</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>کاربردهای مهم:</strong></p>
+            <ul>
+                <li><strong>تصحیح گاما:</strong> برای جبران عدم خطی بودن نمایشگرها</li>
+                <li><strong>ارتقای کنتراست:</strong> برای بهبود کنتراست تصویر</li>
+                <li><strong>پردازش تصاویر پزشکی:</strong> برای بهبود نمایش جزئیات</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه تبدیلات</h2>
+
+        <div class="definition">
+            <h3>خلاصه ویژگی‌های تبدیلات پایه:</h3>
+            <ul>
+                <li><strong>نگاتیو:</strong> معکوس کردن سطوح شدت - مناسب برای ارتقای جزئیات در مناطق تاریک</li>
+                <li><strong>لگاریتمی:</strong> گسترش مقادیر تاریک - مناسب برای تصاویر با طیف دینامیکی بالا</li>
+                <li><strong>قانون توان ($\gamma < 1$):</strong> گسترش مقادیر تاریک - شبیه به لگاریتمی اما قابل تنظیم‌تر</li>
+                <li><strong>قانون توان ($\gamma > 1$):</strong> گسترش مقادیر روشن - مناسب برای ارتقای جزئیات در مناطق روشن</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="03_piecewise_linear.html">تبدیلات تکه‌ای خطی</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

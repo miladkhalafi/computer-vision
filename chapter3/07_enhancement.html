@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>فصل سوم - تکنیک‌های ارتقای تصویر</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .workflow {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-right: 4px solid #27ae60;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="06_laplacian.html">عملگر لاپلاسین</a>
+            <a href="07_enhancement.html">ارتقای تصویر</a>
+        </div>
+
+        <h1>فصل سوم – تکنیک‌های ارتقای تصویر</h1>
+
+        <div class="definition">
+            <h2>تعریف ارتقای تصویر</h2>
+            <p><strong>ارتقای تصویر (Image Enhancement)</strong> فرایند دستکاری تصویر است به طوری که نتیجه نسبت به تصویر اصلی برای کاربرد خاص، مناسب‌تر است.</p>
+        </div>
+
+        <h2>روش‌های ارتقای تصویر</h2>
+
+        <h3>1. ارتقای تصویر با تبدیلات شدت</h3>
+        <ul>
+            <li><strong>تبدیلات خطی:</strong> نگاتیو، همانی</li>
+            <li><strong>تبدیلات لگاریتمی:</strong> برای گسترش مقادیر تاریک</li>
+            <li><strong>قانون توان:</strong> برای کنترل کنتراست</li>
+            <li><strong>تبدیلات تکه‌ای خطی:</strong> گسترش کنتراست، بخش‌بندی سطح شدت</li>
+        </ul>
+
+        <h3>2. ارتقای تصویر با پردازش هیستوگرام</h3>
+        <ul>
+            <li><strong>تساوی‌سازی هیستوگرام:</strong> بهبود خودکار کنتراست</li>
+            <li><strong>مطابقت هیستوگرام:</strong> تبدیل به یک هیستوگرام مشخص شده</li>
+            <li><strong>تحلیل هیستوگرام:</strong> درک ویژگی‌های تصویر</li>
+        </ul>
+
+        <h3>3. ارتقای تصویر با عملگرهای مشتق</h3>
+        <ul>
+            <li><strong>گرادیان:</strong> برای تشخیص و ارتقای لبه‌ها</li>
+            <li><strong>لاپلاسین:</strong> برای ارتقای جزئیات ریز</li>
+            <li><strong>ترکیب گرادیان و لاپلاسین:</strong> برای نتایج بهینه</li>
+        </ul>
+
+        <h2>روش ترکیبی ارتقای تصویر</h2>
+
+        <div class="workflow">
+            <h3>مراحل ارتقای تصویر پیچیده:</h3>
+            <ol>
+                <li><strong>پیش‌پردازش:</strong> کاهش نویز (در صورت نیاز)</li>
+                <li><strong>محاسبه گرادیان:</strong> استفاده از عملگر سوبل برای تشخیص لبه‌ها</li>
+                <li><strong>محاسبه لاپلاسین:</strong> برای برجسته کردن جزئیات ریز</li>
+                <li><strong>ترکیب:</strong> هموار کردن گرادیان و ضرب در لاپلاسین</li>
+                <li><strong>جمع با تصویر اصلی:</strong> اضافه کردن نتیجه به تصویر اصلی</li>
+                <li><strong>پس‌پردازش:</strong> اعمال قانون توان برای افزایش بازه</li>
+            </ol>
+        </div>
+
+        <h2>مثال عملی: ارتقای اسکن هسته‌ای استخوان</h2>
+
+        <div class="definition">
+            <h3>مشکلات تصویر:</h3>
+            <ul>
+                <li>بازه باریک سطوح شدت</li>
+                <li>محتوای با نویز بالا</li>
+                <li>نیاز به ارتقای جزئیات اسکلت</li>
+            </ul>
+        </div>
+
+        <h3>راه‌حل پیاده‌سازی شده:</h3>
+        <div class="highlight">
+            <ol>
+                <li><strong>استفاده از لاپلاسین:</strong> برای برجسته کردن جزئیات ریز</li>
+                <li><strong>استفاده از گرادیان (سوبل):</strong> برای ارتقای لبه‌های قابل رویت</li>
+                <li><strong>ترکیب هوشمند:</strong>
+                    <ul>
+                        <li>گرادیان هموار می‌شود</li>
+                        <li>در تصویر لاپلاسین ضرب می‌شود</li>
+                        <li>جزئیات در ناحیه‌های قوی حفظ می‌شوند</li>
+                        <li>نویز در ناحیه‌های نسبتاً هموار کاهش می‌یابد</li>
+                    </ul>
+                </li>
+                <li><strong>جمع با تصویر اصلی:</strong> برای بدست آوردن تصویر واضح نهایی</li>
+                <li><strong>اعمال قانون توان:</strong> برای افزایش بازه تصویر تیز شده</li>
+            </ol>
+        </div>
+
+        <h2>مزایای روش ترکیبی</h2>
+
+        <div class="definition">
+            <h3>ویژگی‌های روش ترکیبی:</h3>
+            <ul>
+                <li><strong>بهترین ترکیب:</strong> ترکیب ویژگی‌های لاپلاسین و گرادیان</li>
+                <li><strong>حفظ جزئیات:</strong> جزئیات در ناحیه‌های قوی حفظ می‌شوند</li>
+                <li><strong>کاهش نویز:</strong> نویز در ناحیه‌های هموار کاهش می‌یابد</li>
+                <li><strong>انعطاف‌پذیری:</strong> می‌توان انواع پردازش‌ها را به هم پیوند داد</li>
+                <li><strong>نتایج بهینه:</strong> نتایج بهتری نسبت به استفاده از یک روش به تنهایی</li>
+            </ul>
+        </div>
+
+        <h2>نکات مهم در ارتقای تصویر</h2>
+
+        <div class="highlight">
+            <h3>ملاحظات:</h3>
+            <ul>
+                <li><strong>انتخاب روش:</strong> روش ارتقا باید با توجه به نوع تصویر و هدف انتخاب شود</li>
+                <li><strong>ترکیب روش‌ها:</strong> ترکیب چند روش معمولاً نتایج بهتری دارد</li>
+                <li><strong>حفظ اطلاعات:</strong> باید دقت کرد که اطلاعات مهم از دست نرود</li>
+                <li><strong>کنترل نویز:</strong> برخی روش‌ها ممکن است نویز را افزایش دهند</li>
+                <li><strong>پردازش پزشکی:</strong> در تصاویر پزشکی باید از فیلترهای غیرخطی که ویژگی‌های تصویر را تغییر می‌دهند اجتناب کرد</li>
+            </ul>
+        </div>
+
+        <h2>خلاصه فصل</h2>
+
+        <div class="definition">
+            <h3>مباحث اصلی فصل سوم:</h3>
+            <ol>
+                <li><strong>مفاهیم پایه:</strong> حوزه مکانی و حوزه تبدیل</li>
+                <li><strong>تبدیلات پایه شدت:</strong> خطی، لگاریتمی، قانون توان</li>
+                <li><strong>تبدیلات تکه‌ای خطی:</strong> گسترش کنتراست، بخش‌بندی سطح شدت، صفحات بیتی</li>
+                <li><strong>پردازش هیستوگرام:</strong> تساوی‌سازی و مطابقت</li>
+                <li><strong>عملگرهای مشتق:</strong> گرادیان (روبرتز، سوبل) و لاپلاسین</li>
+                <li><strong>ارتقای تصویر:</strong> روش‌های ترکیبی برای نتایج بهینه</li>
+            </ol>
+        </div>
+
+        <h2>کاربردهای عملی</h2>
+
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background-color: #3498db; color: white;">
+                <th style="border: 1px solid #ddd; padding: 12px;">کاربرد</th>
+                <th style="border: 1px solid #ddd; padding: 12px;">روش مناسب</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;">بهبود کنتراست کلی</td>
+                <td style="border: 1px solid #ddd; padding: 12px;">تساوی‌سازی هیستوگرام، گسترش کنتراست</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;">برجسته کردن جزئیات در مناطق تاریک</td>
+                <td style="border: 1px solid #ddd; padding: 12px;">تبدیل لگاریتمی، نگاتیو</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;">تشخیص لبه‌ها</td>
+                <td style="border: 1px solid #ddd; padding: 12px;">گرادیان (سوبل)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;">ارتقای جزئیات ریز</td>
+                <td style="border: 1px solid #ddd; padding: 12px;">لاپلاسین</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;">بازرسی صنعتی</td>
+                <td style="border: 1px solid #ddd; padding: 12px;">ترکیب گرادیان و لاپلاسین</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 12px;">پردازش تصاویر پزشکی</td>
+                <td style="border: 1px solid #ddd; padding: 12px;">روش‌های خطی (اجتناب از فیلتر میانه)</td>
+            </tr>
+        </table>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>بازگشت به:</strong> <a href="index.html">فهرست مطالب</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

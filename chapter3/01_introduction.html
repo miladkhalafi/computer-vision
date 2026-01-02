@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل سوم - مقدمه و مفاهیم پایه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="01_introduction.html">مقدمه</a>
+        </div>
+
+        <h1>فصل سوم – تبدیلات شدت: مقدمه و مفاهیم پایه</h1>
+
+        <div class="definition">
+            <h2>مقدمه</h2>
+            <p>فصل سوم به بررسی <strong>تبدیلات شدت</strong> (Intensity Transformations) در پردازش تصویر می‌پردازد. این تبدیلات بر روی یک پیکسل از تصویر عمل می‌کنند و هدف آنها دستکاری کنتراست و آستانه‌گیری تصویر (Image Thresholding) است.</p>
+        </div>
+
+        <h2>حوزه‌های پردازش تصویر</h2>
+
+        <h3>1. حوزه مکانی (Spatial Domain)</h3>
+        <div class="highlight">
+            <p><strong>تعریف:</strong> واژه حوزه مکانی به خود صفحه تصویر اطلاق می‌شود. در این حوزه، روش‌های پردازش تصویر، پیکسل‌ها را به طور مستقیم دستکاری می‌کنند.</p>
+        </div>
+
+        <h3>2. حوزه تبدیل تصویر (Frequency Domain)</h3>
+        <div class="highlight">
+            <p><strong>تعریف:</strong> در این روش، تصویر ابتدا به حوزه تبدیل منتقل می‌شود، در آنجا پردازش می‌شود، سپس با اعمال تبدیل معکوس، نتایج به حوزه مکان منتقل می‌شود.</p>
+        </div>
+
+        <h2>پردازش حوزه مکانی</h2>
+        <p>پردازش حوزه مکانی به صورت زیر تعریف می‌شود:</p>
+        
+        <div class="formula">
+            $$g(x,y) = T[f(x,y)]$$
+        </div>
+
+        <p>جایی که:</p>
+        <ul>
+            <li><strong>$f(x,y)$</strong>: تصویر ورودی</li>
+            <li><strong>$g(x,y)$</strong>: تصویر خروجی</li>
+            <li><strong>$T$</strong>: عملکردی که در همسایگی نقطه $(x,y)$ تعریف شده باشد</li>
+        </ul>
+
+        <div class="definition">
+            <h3>همسایگی (Neighborhood)</h3>
+            <p>نقطه $(x,y)$ یک مکان اختیاری در تصویر است و منطقه کوچک حاوی این نقطه، <strong>همسایگی $(x,y)$</strong> است. بنابراین برای هر مکان خاص $(x,y)$، مقدار تصویر خروجی $g$ در آن مختصات، برابر با نتیجه اجرای $T$ روی همسایگی با مبدا $(x,y)$ است.</p>
+        </div>
+
+        <h2>روش اجرای پردازش</h2>
+        <ul>
+            <li>معمولاً این پردازش از بالا و چپ تصویر ورودی شروع می‌شود و پیکسل به پیکسل در پیمایش افقی پیش می‌رود.</li>
+            <li>در هر بار یک سطر اسکن می‌شود.</li>
+            <li>وقتی مبدا همسایگی در مرز تصویر قرار دارد، بخشی از همسایگی در خارج از تصویر قرار می‌گیرد.</li>
+            <li>روش انجام کار، یا نادیده گرفتن همسایه‌های بیرونی در محاسبات مشخص شده توسط $T$ است یا گسترش تصویر با مرزی از صفرها یا مقادیر شدت مشخص شده دیگر است.</li>
+            <li>ضخامت مرز اضافه شده با صفر (padding) به اندازه همسایگی بستگی دارد.</li>
+        </ul>
+
+        <h2>کوچکترین همسایگی</h2>
+        <p>کوچکترین همسایگی ممکن به اندازه $1 \times 1$ است، لذا داریم:</p>
+        <div class="formula">
+            $$s = T(r)$$
+        </div>
+        <p>که در آن $r$ و $s$ به ترتیب مقادیر شدت پیکسل ورودی و خروجی هستند.</p>
+
+        <h2>انواع تبدیلات شدت</h2>
+        <ol>
+            <li><strong>توابع تبدیل شدت</strong></li>
+            <li><strong>تابع گسترش کنتراست</strong></li>
+            <li><strong>تابع تعیین آستانه</strong></li>
+        </ol>
+
+        <h2>مقایسه حوزه مکانی و حوزه تبدیل</h2>
+        <div class="highlight">
+            <p><strong>مزایای حوزه مکانی:</strong></p>
+            <ul>
+                <li>پیاده‌سازی بعضی از کارهای پردازش تصویر در حوزه مکانی، آسان‌تر و با معنی‌تر است.</li>
+                <li>تکنیک‌های حوزه مکانی، از نظر محاسباتی کارآمدتر هستند.</li>
+                <li>به منابع پردازش کننده کمتری نیاز دارند.</li>
+            </ul>
+            <p><strong>نکته:</strong> فیلترگذاری مکانی با اجرای عملیاتی مثل تیز کردن تصویر سر و کار دارد و برای این منظور در همسایگی هر پیکسل در تصویر عمل می‌کنند.</p>
+        </div>
+
+        <h2>ارتقای تصویر (Image Enhancement)</h2>
+        <div class="definition">
+            <p><strong>تعریف:</strong> فرایند دستکاری تصویر است به طوری که نتیجه نسبت به تصویر اصلی برای کاربرد خاص، مناسب‌تر است.</p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="02_basic_transformations.html">تبدیلات پایه شدت</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

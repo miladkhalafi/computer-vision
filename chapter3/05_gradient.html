@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>فصل سوم - عملگرهای گرادیان</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        .kernel {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Vazir', monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table td, table th {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        table th {
+            background-color: #3498db;
+            color: white;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="04_histogram.html">پردازش هیستوگرام</a>
+            <a href="05_gradient.html">عملگرهای گرادیان</a>
+        </div>
+
+        <h1>فصل سوم – عملگرهای گرادیان</h1>
+
+        <div class="definition">
+            <h2>مقدمه</h2>
+            <p>گرادیان یک بردار است که هم اندازه و هم جهت دارد. گرادیان در مکان $(x,y)$ هم اندازه است و هم جهت دارد که به جهتی با بزرگترین نرخ تغییر $f$ در مکان $(x,y)$ اشاره می‌کند.</p>
+        </div>
+
+        <h2>تعریف ریاضی گرادیان</h2>
+
+        <p>گرادیان تابع $f(x,y)$ به صورت زیر تعریف می‌شود:</p>
+
+        <div class="formula">
+            $$\nabla f = \left[ \begin{array}{l} G_x \\ G_y \end{array} \right] = \left[ \begin{array}{l} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{array} \right]$$
+        </div>
+
+        <p>که در آن:</p>
+        <ul>
+            <li><strong>$G_x$</strong>: مشتق جزئی نسبت به $x$</li>
+            <li><strong>$G_y$</strong>: مشتق جزئی نسبت به $y$</li>
+        </ul>
+
+        <h2>اندازه گرادیان</h2>
+
+        <p>اندازه بردار $\nabla f$ به صورت زیر محاسبه می‌شود. این تصویر را می‌توان تصویر گرادیان یا به اختصار گرادیان نامید:</p>
+
+        <div class="formula">
+            $$|\nabla f| = mag(\nabla f) = \left[ G_x^2 + G_y^2 \right]^{1/2}$$
+        </div>
+
+        <h3>تقریب محاسباتی</h3>
+        <p>از نظر محاسباتی، بهتر است اندازه بردار $\nabla f$ به صورت زیر محاسبه شود:</p>
+
+        <div class="formula">
+            $$|\nabla f| \approx |G_x| + |G_y|$$
+        </div>
+
+        <div class="highlight">
+            <p><strong>ویژگی‌های گرادیان:</strong></p>
+            <ul>
+                <li>گرادیان در لبه‌ها (edges) مقادیر بزرگ دارد.</li>
+                <li>گرادیان در نواحی یکنواخت مقادیر کوچک دارد.</li>
+                <li>گرادیان برای تشخیص لبه‌ها و ارتقای آنها استفاده می‌شود.</li>
+            </ul>
+        </div>
+
+        <h2>عملگر روبرتز (Roberts Operator)</h2>
+
+        <div class="definition">
+            <p>عملگر روبرتز یکی از ساده‌ترین عملگرهای گرادیان است که از یک هسته $2 \times 2$ استفاده می‌کند.</p>
+        </div>
+
+        <h3>فرمول عملگر روبرتز</h3>
+
+        <div class="formula">
+            $$\begin{array}{l}
+            g_x = \frac{\partial f}{\partial x} = (z_9 - z_5) \\
+            g_y = \frac{\partial f}{\partial y} = (z_8 - z_6)
+            \end{array}$$
+        </div>
+
+        <h3>هسته‌های روبرتز</h3>
+
+        <p>هسته‌های روبرتز برای محاسبه $G_x$ و $G_y$:</p>
+
+        <div class="kernel">
+            <table style="margin: 0 auto;">
+                <tr>
+                    <th colspan="2">$G_x$</th>
+                    <th colspan="2">$G_y$</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>-1</td>
+                    <td>-1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="highlight">
+            <p><strong>ویژگی‌های عملگر روبرتز:</strong></p>
+            <ul>
+                <li>ساده و سریع</li>
+                <li>حساس به نویز</li>
+                <li>برای تصاویر با کنتراست بالا مناسب است</li>
+            </ul>
+        </div>
+
+        <h2>عملگر سوبل (Sobel Operator)</h2>
+
+        <div class="definition">
+            <p>عملگر سوبل یکی از پرکاربردترین عملگرهای گرادیان است که از هسته‌های $3 \times 3$ استفاده می‌کند و نسبت به نویز مقاوم‌تر است.</p>
+        </div>
+
+        <h3>فرمول عملگر سوبل</h3>
+
+        <div class="formula">
+            $$\begin{array}{l}
+            g_x = \frac{\partial f}{\partial x} = (z_7 + 2z_8 + z_9) - (z_1 + 2z_2 + z_3) \\
+            g_y = \frac{\partial f}{\partial y} = (z_3 + 2z_6 + z_9) - (z_1 + 2z_4 + z_7)
+            \end{array}$$
+        </div>
+
+        <h3>هسته‌های سوبل</h3>
+
+        <p>هسته‌های سوبل برای محاسبه $G_x$ و $G_y$:</p>
+
+        <div class="kernel">
+            <table style="margin: 0 auto;">
+                <tr>
+                    <th colspan="3">$G_x$</th>
+                </tr>
+                <tr>
+                    <td>-1</td>
+                    <td>-2</td>
+                    <td>-1</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>1</td>
+                </tr>
+            </table>
+            <br>
+            <table style="margin: 0 auto;">
+                <tr>
+                    <th colspan="3">$G_y$</th>
+                </tr>
+                <tr>
+                    <td>-1</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>-2</td>
+                    <td>0</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>-1</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="highlight">
+            <p><strong>ویژگی‌های عملگر سوبل:</strong></p>
+            <ul>
+                <li>مقاوم‌تر به نویز نسبت به روبرتز</li>
+                <li>دقت بالاتر در تشخیص لبه‌ها</li>
+                <li>یکی از پرکاربردترین عملگرهای گرادیان</li>
+                <li>از وزن‌دهی بیشتر برای پیکسل‌های مرکزی استفاده می‌کند</li>
+            </ul>
+        </div>
+
+        <h2>کاربردهای گرادیان</h2>
+
+        <div class="definition">
+            <h3>کاربردهای اصلی:</h3>
+            <ol>
+                <li><strong>بازرسی صنعتی:</strong> کمک به افراد در تشخیص عیب‌ها</li>
+                <li><strong>بازرسی خودکار:</strong> به عنوان مرحله پیش‌پردازش</li>
+                <li><strong>ارتقای عیب‌ها:</strong> برجسته کردن عیب‌ها در تصویر</li>
+                <li><strong>حذف ویژگی‌های پس‌زمینه:</strong> حذف تغییرات کند</li>
+                <li><strong>تشخیص لبه‌ها:</strong> شناسایی مرزهای اشیاء</li>
+            </ol>
+        </div>
+
+        <h2>مقایسه عملگرهای گرادیان</h2>
+
+        <table>
+            <tr>
+                <th>عملگر</th>
+                <th>اندازه هسته</th>
+                <th>حساسیت به نویز</th>
+                <th>دقت</th>
+                <th>سرعت</th>
+            </tr>
+            <tr>
+                <td>روبرتز</td>
+                <td>$2 \times 2$</td>
+                <td>زیاد</td>
+                <td>متوسط</td>
+                <td>بسیار سریع</td>
+            </tr>
+            <tr>
+                <td>سوبل</td>
+                <td>$3 \times 3$</td>
+                <td>کم</td>
+                <td>بالا</td>
+                <td>سریع</td>
+            </tr>
+        </table>
+
+        <h2>مثال عملی</h2>
+
+        <div class="highlight">
+            <p>در مثال ارائه شده در فصل:</p>
+            <ul>
+                <li>تصویر اصلی با تصویر گرادیان روبرتز و سوبل مقایسه شده است.</li>
+                <li>عملگر سوبل نتایج بهتری در تشخیص لبه‌ها ارائه می‌دهد.</li>
+                <li>گرادیان برای ارتقای جزئیات و برجسته کردن لبه‌ها استفاده می‌شود.</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="06_laplacian.html">عملگر لاپلاسین</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

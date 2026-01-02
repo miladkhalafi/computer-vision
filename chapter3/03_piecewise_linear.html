@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>فصل سوم - تبدیلات تکه‌ای خطی</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="02_basic_transformations.html">تبدیلات پایه</a>
+            <a href="03_piecewise_linear.html">تبدیلات تکه‌ای خطی</a>
+        </div>
+
+        <h1>فصل سوم – تبدیلات تکه‌ای خطی</h1>
+
+        <div class="definition">
+            <h2>مقدمه</h2>
+            <p>تبدیلات تکه‌ای خطی (Piecewise Linear Transformations) از چندین تابع خطی تشکیل شده‌اند که هر کدام در بازه مشخصی از سطوح شدت عمل می‌کنند. این تبدیلات انعطاف‌پذیری بیشتری نسبت به تبدیلات خطی ساده دارند.</p>
+        </div>
+
+        <h2>انواع تبدیلات تکه‌ای خطی</h2>
+        <ol>
+            <li><strong>گسترش کنتراست (Contrast Stretching)</strong></li>
+            <li><strong>بخش‌بندی سطح شدت (Intensity Level Slicing)</strong></li>
+            <li><strong>بخش‌بندی تصویر به صفحات بیتی (Bit-Plane Slicing)</strong></li>
+        </ol>
+
+        <h2>1. گسترش کنتراست (Contrast Stretching)</h2>
+
+        <div class="definition">
+            <p><strong>هدف:</strong> افزایش دامنه کنتراست تصویر با گسترش بازه سطوح شدت استفاده شده.</p>
+        </div>
+
+        <h3>تابع تبدیل</h3>
+        <p>تابع تبدیل گسترش کنتراست به صورت زیر تعریف می‌شود:</p>
+
+        <div class="formula">
+            $$s = \begin{cases}
+            \frac{s_2 - s_1}{r_2 - r_1}(r - r_1) + s_1 & \text{اگر } r_1 \leq r \leq r_2 \\
+            \text{مقادیر دیگر} & \text{در غیر این صورت}
+            \end{cases}$$
+        </div>
+
+        <p>که در آن:</p>
+        <ul>
+            <li><strong>$r_1, r_2$</strong>: نقاط کنترل در تصویر ورودی</li>
+            <li><strong>$s_1, s_2$</strong>: نقاط کنترل در تصویر خروجی</li>
+            <li><strong>$r$</strong>: مقدار شدت پیکسل ورودی</li>
+            <li><strong>$s$</strong>: مقدار شدت پیکسل خروجی</li>
+        </ul>
+
+        <div class="highlight">
+            <p><strong>ویژگی‌ها:</strong></p>
+            <ul>
+                <li>مقادیر شدت در بازه $[r_1, r_2]$ به بازه گسترده‌تر $[s_1, s_2]$ نگاشت می‌شوند.</li>
+                <li>مقادیر خارج از بازه $[r_1, r_2]$ می‌توانند ثابت نگه داشته شوند یا به مقادیر دیگر تبدیل شوند.</li>
+                <li>برای بهبود کنتراست در بخش خاصی از تصویر مفید است.</li>
+            </ul>
+        </div>
+
+        <h2>2. بخش‌بندی سطح شدت (Intensity Level Slicing)</h2>
+
+        <div class="definition">
+            <p><strong>هدف:</strong> برجسته کردن محدوده خاصی از سطوح شدت در تصویر، معمولاً برای جدا کردن یک ناحیه از بقیه تصویر.</p>
+        </div>
+
+        <h3>آستانه‌گیری (Thresholding)</h3>
+        <p>آستانه‌گیری یک حالت خاص از بخش‌بندی سطح شدت است که در آن تصویر به دو کلاس تقسیم می‌شود:</p>
+
+        <div class="formula">
+            $$s = \begin{cases}
+            L-1 & \text{اگر } r \geq T \\
+            0 & \text{اگر } r < T
+            \end{cases}$$
+        </div>
+
+        <p>که در آن <strong>$T$</strong> مقدار آستانه (threshold) است.</p>
+
+        <div class="highlight">
+            <p><strong>کاربرد آستانه‌گیری:</strong></p>
+            <ul>
+                <li>جدا کردن اشیاء از پس‌زمینه</li>
+                <li>بخش‌بندی تصویر</li>
+                <li>استخراج ویژگی‌های خاص</li>
+                <li>پیش‌پردازش برای الگوریتم‌های دیگر</li>
+            </ul>
+        </div>
+
+        <h3>دو روش اصلی:</h3>
+
+        <h3>روش 1: برجسته کردن محدوده شدت</h3>
+        <p>تمام مقادیر در بازه مورد نظر به یک مقدار روشن (مثلاً سفید) تبدیل می‌شوند و بقیه مقادیر به یک مقدار تاریک (مثلاً سیاه) تبدیل می‌شوند:</p>
+
+        <div class="formula">
+            $$s = \begin{cases}
+            L-1 & \text{اگر } A \leq r \leq B \\
+            0 & \text{در غیر این صورت}
+            \end{cases}$$
+        </div>
+
+        <h3>روش 2: حفظ مقادیر اصلی</h3>
+        <p>مقادیر در بازه مورد نظر حفظ می‌شوند و بقیه به یک مقدار ثابت تبدیل می‌شوند:</p>
+
+        <div class="formula">
+            $$s = \begin{cases}
+            r & \text{اگر } A \leq r \leq B \\
+            k & \text{در غیر این صورت}
+            \end{cases}$$
+        </div>
+
+        <p>که در آن $k$ یک مقدار ثابت است (معمولاً 0 یا $L-1$).</p>
+
+        <div class="highlight">
+            <p><strong>کاربردها:</strong></p>
+            <ul>
+                <li>جدا کردن اشیاء خاص از پس‌زمینه</li>
+                <li>برجسته کردن ویژگی‌های خاص در تصویر</li>
+                <li>پیش‌پردازش برای بخش‌بندی تصویر</li>
+            </ul>
+        </div>
+
+        <h2>3. بخش‌بندی تصویر به صفحات بیتی (Bit-Plane Slicing)</h2>
+
+        <div class="definition">
+            <p><strong>هدف:</strong> نمایش سهم هر بیت در تصویر و استفاده از آن برای تحلیل و فشرده‌سازی تصویر.</p>
+        </div>
+
+        <h3>مفهوم صفحات بیتی</h3>
+        <p>یک تصویر 8 بیتی را می‌توان به 8 صفحه بیتی تقسیم کرد:</p>
+        <ul>
+            <li><strong>صفحه بیتی 0 (LSB - Least Significant Bit):</strong> کم‌اهمیت‌ترین بیت</li>
+            <li><strong>صفحه بیتی 1 تا 6:</strong> بیت‌های میانی</li>
+            <li><strong>صفحه بیتی 7 (MSB - Most Significant Bit):</strong> پراهمیت‌ترین بیت</li>
+        </ul>
+
+        <h3>استخراج صفحه بیتی</h3>
+        <p>برای استخراج صفحه بیتی $k$ از یک پیکسل با مقدار $r$:</p>
+
+        <div class="formula">
+            $$\text{بیت } k = \lfloor \frac{r}{2^k} \rfloor \bmod 2$$
+        </div>
+
+        <div class="highlight">
+            <p><strong>ویژگی‌های صفحات بیتی:</strong></p>
+            <ul>
+                <li><strong>صفحات بیتی بالا (MSB):</strong> حاوی بیشترین اطلاعات تصویر و ساختار کلی</li>
+                <li><strong>صفحات بیتی پایین (LSB):</strong> حاوی جزئیات ریز و اغلب نویز</li>
+                <li>صفحات بیتی بالا معمولاً شبیه به تصویر اصلی هستند.</li>
+                <li>صفحات بیتی پایین اغلب شبیه به نویز تصادفی هستند.</li>
+            </ul>
+        </div>
+
+        <h3>کاربردهای بخش‌بندی صفحات بیتی</h3>
+        <ol>
+            <li><strong>تحلیل تصویر:</strong> درک سهم هر بیت در اطلاعات تصویر</li>
+            <li><strong>فشرده‌سازی:</strong> حذف صفحات بیتی کم‌اهمیت برای کاهش حجم داده</li>
+            <li><strong>ارتقای تصویر:</strong> استفاده از صفحات بیتی خاص برای بهبود تصویر</li>
+            <li><strong>پنهان‌سازی اطلاعات:</strong> استفاده از LSB برای استگانوگرافی</li>
+        </ol>
+
+        <h2>مقایسه تبدیلات تکه‌ای خطی</h2>
+
+        <div class="definition">
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background-color: #3498db; color: white;">
+                    <th style="border: 1px solid #ddd; padding: 12px;">نوع تبدیل</th>
+                    <th style="border: 1px solid #ddd; padding: 12px;">هدف اصلی</th>
+                    <th style="border: 1px solid #ddd; padding: 12px;">کاربرد</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">گسترش کنتراست</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">افزایش دامنه کنتراست</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">بهبود کلی تصویر</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">بخش‌بندی سطح شدت</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">برجسته کردن محدوده خاص</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">بخش‌بندی و جداسازی</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 12px;">صفحات بیتی</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">تحلیل ساختار بیتی</td>
+                    <td style="border: 1px solid #ddd; padding: 12px;">فشرده‌سازی و تحلیل</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="04_histogram.html">پردازش هیستوگرام</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
