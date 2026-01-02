@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>انواع نویزها و فیلترهای مناسب</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        .noise-type {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #666;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست موضوعات</a>
+            <a href="08_image_restoration.html">بازیابی تصویر</a>
+            <a href="10_adaptive_filters.html">فیلترهای تطبیقی</a>
+        </div>
+
+        <h1>انواع نویزها و فیلترهای مناسب آنها</h1>
+
+        <h2>1. نویز گاوسی (Gaussian Noise)</h2>
+        <div class="noise-type">
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>توزیع نرمال</li>
+                <li>در تمام تصویر یکنواخت</li>
+                <li>نویز افزودنی</li>
+            </ul>
+
+            <h3>تابع چگالی احتمال (PDF)</h3>
+            <div class="formula">
+                $$p(z) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(z-\mu)^2}{2\sigma^2}}$$
+            </div>
+
+            <h3>فیلترهای مناسب</h3>
+            <ul>
+                <li><strong>فیلتر میانگین:</strong> برای نویز ضعیف</li>
+                <li><strong>فیلتر گاوسی:</strong> بهترین انتخاب</li>
+                <li><strong>فیلتر وینر:</strong> در صورت وجود تخریب</li>
+            </ul>
+        </div>
+
+        <h2>2. نویز نمکی-فلفلی (Salt and Pepper Noise)</h2>
+        <div class="noise-type">
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>پیکسل‌های تصادفی به 0 یا 255 تبدیل می‌شوند</li>
+                <li>نویز ضربه‌ای (impulse noise)</li>
+                <li>به صورت نقاط سفید و سیاه ظاهر می‌شود</li>
+            </ul>
+
+            <h3>تابع چگالی احتمال</h3>
+            <div class="formula">
+                $$p(z) = \begin{cases}
+                P_a & \text{for } z = a \text{ (pepper)} \\
+                P_b & \text{for } z = b \text{ (salt)} \\
+                0 & \text{otherwise}
+                \end{cases}$$
+            </div>
+
+            <h3>فیلترهای مناسب</h3>
+            <ul>
+                <li><strong>فیلتر میانه:</strong> بهترین انتخاب</li>
+                <li><strong>فیلترهای مرتب‌سازی:</strong> max, min, midpoint</li>
+                <li><strong>فیلتر میانگین:</strong> مناسب نیست (نویز را پخش می‌کند)</li>
+            </ul>
+        </div>
+
+        <h2>3. نویز یکنواخت (Uniform Noise)</h2>
+        <div class="noise-type">
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>توزیع یکنواخت در بازه مشخص</li>
+                <li>کمتر رایج</li>
+            </ul>
+
+            <h3>تابع چگالی احتمال</h3>
+            <div class="formula">
+                $$p(z) = \begin{cases}
+                \frac{1}{b-a} & \text{if } a \leq z \leq b \\
+                0 & \text{otherwise}
+                \end{cases}$$
+            </div>
+
+            <h3>فیلترهای مناسب</h3>
+            <ul>
+                <li>فیلتر میانگین</li>
+                <li>فیلتر گاوسی</li>
+            </ul>
+        </div>
+
+        <h2>4. نویز نمایی (Exponential Noise)</h2>
+        <div class="noise-type">
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>در سیستم‌های لیدار و رادار</li>
+                <li>توزیع نمایی</li>
+            </ul>
+
+            <h3>فیلترهای مناسب</h3>
+            <ul>
+                <li>فیلتر میانه</li>
+                <li>فیلترهای مرتب‌سازی</li>
+            </ul>
+        </div>
+
+        <h2>5. نویز گاما (Gamma Noise)</h2>
+        <div class="noise-type">
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>در سیستم‌های تصویربرداری خاص</li>
+                <li>توزیع گاما</li>
+            </ul>
+
+            <h3>فیلترهای مناسب</h3>
+            <ul>
+                <li>فیلتر میانه</li>
+                <li>فیلترهای مرتب‌سازی</li>
+            </ul>
+        </div>
+
+        <h2>6. نویز تناوبی (Periodic Noise)</h2>
+        <div class="noise-type">
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>الگوی تناوبی در تصویر</li>
+                <li>معمولاً در حوزه فرکانس قابل مشاهده است</li>
+            </ul>
+
+            <h3>فیلترهای مناسب</h3>
+            <ul>
+                <li><strong>فیلتر باندتوقف:</strong> حذف فرکانس‌های خاص</li>
+                <li><strong>فیلتر نوتچ:</strong> حذف فرکانس‌های تناوبی</li>
+                <li><strong>فیلترگذاری در حوزه فرکانس:</strong> بهترین روش</li>
+            </ul>
+        </div>
+
+        <h2>جدول خلاصه</h2>
+        <table>
+            <tr>
+                <th>نوع نویز</th>
+                <th>فیلتر مناسب</th>
+                <th>نکات</th>
+            </tr>
+            <tr>
+                <td>گاوسی</td>
+                <td>گاوسی، میانگین</td>
+                <td>فیلتر گاوسی بهترین است</td>
+            </tr>
+            <tr>
+                <td>نمکی-فلفلی</td>
+                <td>میانه</td>
+                <td>فیلتر میانگین مناسب نیست</td>
+            </tr>
+            <tr>
+                <td>یکنواخت</td>
+                <td>میانگین، گاوسی</td>
+                <td>فیلترهای خطی مناسب هستند</td>
+            </tr>
+            <tr>
+                <td>تناوبی</td>
+                <td>باندتوقف، نوتچ</td>
+                <td>در حوزه فرکانس حذف می‌شود</td>
+            </tr>
+            <tr>
+                <td>نمایی/گاما</td>
+                <td>میانه</td>
+                <td>فیلترهای غیرخطی بهتر هستند</td>
+            </tr>
+        </table>
+
+        <h2>نکات مهم</h2>
+        <div class="highlight">
+            <ul>
+                <li>شناسایی نوع نویز مهم است</li>
+                <li>فیلتر میانه برای نویز ضربه‌ای بهترین است</li>
+                <li>فیلتر گاوسی برای نویز گاوسی بهترین است</li>
+                <li>فیلترهای تطبیقی برای نویزهای ترکیبی مناسب هستند</li>
+                <li>نویز تناوبی باید در حوزه فرکانس حذف شود</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه فیلترها</h2>
+        <div class="definition">
+            <h3>فیلتر میانگین</h3>
+            <ul>
+                <li>مزیت: ساده و سریع</li>
+                <li>عیب: لبه‌ها را تار می‌کند</li>
+                <li>مناسب برای: نویز گاوسی ضعیف</li>
+            </ul>
+
+            <h3>فیلتر میانه</h3>
+            <ul>
+                <li>مزیت: حفظ لبه‌ها</li>
+                <li>عیب: کندتر از میانگین</li>
+                <li>مناسب برای: نویز ضربه‌ای</li>
+            </ul>
+
+            <h3>فیلتر گاوسی</h3>
+            <ul>
+                <li>مزیت: حفظ لبه‌ها بهتر از میانگین</li>
+                <li>عیب: هنوز لبه‌ها را کمی تار می‌کند</li>
+                <li>مناسب برای: نویز گاوسی</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="10_adaptive_filters.html">فیلترهای تطبیقی</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>بازیابی تصویر</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست موضوعات</a>
+            <a href="07_lowpass_highpass.html">فیلترهای پایین‌گذر و بالاگذر</a>
+            <a href="09_noise_filters.html">انواع نویزها و فیلترها</a>
+        </div>
+
+        <h1>بازیابی تصویر (Image Restoration)</h1>
+
+        <div class="definition">
+            <h2>تعریف</h2>
+            <p><strong>بازیابی تصویر</strong> فرآیند بازگرداندن تصویر تخریب شده به حالت اصلی یا نزدیک به آن است. این کار با استفاده از دانش درباره فرآیند تخریب انجام می‌شود.</p>
+        </div>
+
+        <h2>مدل تنزل کیفیت</h2>
+
+        <div class="formula">
+            $$g(x,y) = h(x,y) * f(x,y) + \eta(x,y)$$
+        </div>
+
+        <p>در حوزه فرکانس:</p>
+        <div class="formula">
+            $$G(u,v) = H(u,v) \cdot F(u,v) + N(u,v)$$
+        </div>
+
+        <p>که در آن:</p>
+        <ul>
+            <li><strong>$f(x,y)$</strong>: تصویر اصلی (نامعلوم)</li>
+            <li><strong>$g(x,y)$</strong>: تصویر تخریب شده (مشاهده شده)</li>
+            <li><strong>$h(x,y)$</strong>: تابع تنزل کیفیت (degradation function)</li>
+            <li><strong>$\eta(x,y)$</strong>: نویز افزودنی</li>
+            <li><strong>$*$</strong>: کانولوشن</li>
+        </ul>
+
+        <h2>انواع روش‌های بازیابی</h2>
+
+        <h3>1. فیلتر معکوس (Inverse Filtering)</h3>
+        <div class="formula">
+            $$\hat{F}(u,v) = \frac{G(u,v)}{H(u,v)} = F(u,v) + \frac{N(u,v)}{H(u,v)}$$
+        </div>
+        <p><strong>مشکل:</strong> اگر $H(u,v)$ کوچک باشد، نویز تقویت می‌شود.</p>
+
+        <h3>2. فیلتر وینر (Wiener Filter)</h3>
+        <div class="formula">
+            $$\hat{F}(u,v) = \left[ \frac{1}{H(u,v)} \cdot \frac{|H(u,v)|^2}{|H(u,v)|^2 + K} \right] G(u,v)$$
+        </div>
+        <p>که در آن $K = S_\eta(u,v)/S_f(u,v)$ نسبت طیف توان نویز به تصویر است.</p>
+        <p><strong>مزیت:</strong> کاهش تأثیر نویز</p>
+
+        <h3>3. فیلتر کمترین مجذورات مقید (Constrained Least Squares)</h3>
+        <p>بهینه‌سازی با محدودیت:</p>
+        <div class="formula">
+            $$\min \|C \hat{f}\|^2 \quad \text{subject to} \quad \|g - H \hat{f}\|^2 = \|\eta\|^2$$
+        </div>
+        <p>که در آن $C$ عملگر لاپلاسین است.</p>
+
+        <h2>برآورد تابع تنزل کیفیت</h2>
+        <ul>
+            <li><strong>بررسی تصویر:</strong> تحلیل الگوهای تخریب</li>
+            <li><strong>بررسی آزمایشی:</strong> استفاده از تصاویر تست</li>
+            <li><strong>مدل‌سازی:</strong> استفاده از مدل‌های فیزیکی</li>
+        </ul>
+
+        <h2>انواع تخریب</h2>
+        <ul>
+            <li><strong>تار شدن (Blurring):</strong> حرکت دوربین یا جسم</li>
+            <li><strong>نویز:</strong> نویز الکترونیکی، کوانتیزاسیون</li>
+            <li><strong>تخریب هندسی:</strong> اعوجاج لنز</li>
+            <li><strong>کاهش وضوح:</strong> محدودیت سیستم تصویربرداری</li>
+        </ul>
+
+        <h2>مراحل بازیابی</h2>
+        <ol>
+            <li>شناسایی نوع تخریب</li>
+            <li>برآورد تابع تنزل کیفیت</li>
+            <li>برآورد پارامترهای نویز</li>
+            <li>اعمال الگوریتم بازیابی مناسب</li>
+            <li>ارزیابی نتیجه</li>
+        </ol>
+
+        <h2>مزایا و محدودیت‌ها</h2>
+        <div class="highlight">
+            <h3>مزایا:</h3>
+            <ul>
+                <li>بازگرداندن جزئیات از دست رفته</li>
+                <li>حذف نویز</li>
+                <li>بهبود کیفیت تصویر</li>
+            </ul>
+
+            <h3>محدودیت‌ها:</h3>
+            <ul>
+                <li>نیاز به دانش درباره فرآیند تخریب</li>
+                <li>ممکن است artifacts ایجاد کند</li>
+                <li>محاسبات پیچیده</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        <ul>
+            <li>بازیابی تصاویر قدیمی</li>
+            <li>بهبود تصاویر پزشکی</li>
+            <li>بازیابی تصاویر ماهواره‌ای</li>
+            <li>حذف تار شدن در عکاسی</li>
+        </ul>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="09_noise_filters.html">انواع نویزها و فیلترهای مناسب آنها</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

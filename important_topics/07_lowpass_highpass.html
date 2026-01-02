@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>فیلترهای پایین‌گذر و بالاگذر</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        .lowpass {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #4caf50;
+        }
+        .highpass {
+            background-color: #fce4ec;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #e91e63;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست موضوعات</a>
+            <a href="06_convolution.html">تئوری کانولوشن</a>
+            <a href="08_image_restoration.html">بازیابی تصویر</a>
+        </div>
+
+        <h1>فیلترهای پایین‌گذر و بالاگذر</h1>
+
+        <h2>فیلترهای پایین‌گذر (Low-pass Filters)</h2>
+
+        <div class="lowpass">
+            <h3>تعریف</h3>
+            <p>فیلترهای پایین‌گذر فرکانس‌های پایین را عبور می‌دهند و فرکانس‌های بالا را حذف می‌کنند.</p>
+
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>حذف نویز</li>
+                <li>صاف کردن تصویر</li>
+                <li>تار کردن جزئیات ریز</li>
+                <li>حفظ تغییرات تدریجی شدت</li>
+            </ul>
+        </div>
+
+        <h3>انواع فیلترهای پایین‌گذر</h3>
+
+        <h4>1. فیلتر ایده‌آل پایین‌گذر (Ideal Low-pass)</h4>
+        <div class="formula">
+            $$H(u,v) = \begin{cases}
+            1 & \text{if } D(u,v) \leq D_0 \\
+            0 & \text{if } D(u,v) > D_0
+            \end{cases}$$
+        </div>
+        <p>که در آن $D(u,v) = \sqrt{(u-M/2)^2 + (v-N/2)^2}$ و $D_0$ فرکانس قطع است.</p>
+        <p><strong>مشکل:</strong> ایجاد ringing effect (نوسانات در لبه‌ها)</p>
+
+        <h4>2. فیلتر باترورث پایین‌گذر (Butterworth Low-pass)</h4>
+        <div class="formula">
+            $$H(u,v) = \frac{1}{1 + [D(u,v)/D_0]^{2n}}$$
+        </div>
+        <p>که در آن $n$ مرتبه فیلتر است.</p>
+        <p><strong>مزیت:</strong> انتقال نرم‌تر، ringing کمتر</p>
+
+        <h4>3. فیلتر گاوسی پایین‌گذر (Gaussian Low-pass)</h4>
+        <div class="formula">
+            $$H(u,v) = e^{-D^2(u,v)/2\sigma^2}$$
+        </div>
+        <p><strong>مزیت:</strong> بدون ringing، انتقال بسیار نرم</p>
+
+        <h2>فیلترهای بالاگذر (High-pass Filters)</h2>
+
+        <div class="highpass">
+            <h3>تعریف</h3>
+            <p>فیلترهای بالاگذر فرکانس‌های بالا را عبور می‌دهند و فرکانس‌های پایین را حذف می‌کنند.</p>
+
+            <h3>ویژگی‌ها</h3>
+            <ul>
+                <li>تیز کردن تصویر</li>
+                <li>تقویت لبه‌ها</li>
+                <li>حذف تغییرات تدریجی</li>
+                <li>تقویت جزئیات</li>
+            </ul>
+        </div>
+
+        <h3>انواع فیلترهای بالاگذر</h3>
+
+        <h4>1. فیلتر ایده‌آل بالاگذر (Ideal High-pass)</h4>
+        <div class="formula">
+            $$H(u,v) = \begin{cases}
+            0 & \text{if } D(u,v) \leq D_0 \\
+            1 & \text{if } D(u,v) > D_0
+            \end{cases}$$
+        </div>
+
+        <h4>2. فیلتر باترورث بالاگذر (Butterworth High-pass)</h4>
+        <div class="formula">
+            $$H(u,v) = \frac{1}{1 + [D_0/D(u,v)]^{2n}}$$
+        </div>
+
+        <h4>3. فیلتر گاوسی بالاگذر (Gaussian High-pass)</h4>
+        <div class="formula">
+            $$H(u,v) = 1 - e^{-D^2(u,v)/2\sigma^2}$$
+        </div>
+
+        <h2>رابطه بین فیلترهای پایین‌گذر و بالاگذر</h2>
+        <div class="formula">
+            $$H_{HP}(u,v) = 1 - H_{LP}(u,v)$$
+        </div>
+        <p>فیلتر بالاگذر = 1 - فیلتر پایین‌گذر</p>
+
+        <h2>مقایسه</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background-color: #f0f0f0;">
+                <th style="padding: 10px; border: 1px solid #ddd;">ویژگی</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">پایین‌گذر</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">بالاگذر</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">هدف</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">حذف نویز</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">تیز کردن</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">فرکانس‌ها</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">پایین</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">بالا</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">تأثیر</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">صاف کردن</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">تقویت لبه</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">کاربرد</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">پیش‌پردازش</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">بهبود جزئیات</td>
+            </tr>
+        </table>
+
+        <h2>فیلترهای باندگذر و باندتوقف</h2>
+        <ul>
+            <li><strong>باندگذر (Band-pass):</strong> عبور فرکانس‌های میانی</li>
+            <li><strong>باندتوقف (Band-stop):</strong> حذف فرکانس‌های میانی</li>
+        </ul>
+
+        <h2>کاربردها</h2>
+        <div class="highlight">
+            <h3>فیلترهای پایین‌گذر:</h3>
+            <ul>
+                <li>حذف نویز</li>
+                <li>صاف کردن تصویر</li>
+                <li>کاهش جزئیات غیرضروری</li>
+            </ul>
+
+            <h3>فیلترهای بالاگذر:</h3>
+            <ul>
+                <li>تیز کردن تصویر</li>
+                <li>تشخیص لبه</li>
+                <li>بهبود کنتراست</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="08_image_restoration.html">بازیابی تصویر</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

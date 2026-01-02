@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>سگمنتیشن</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست موضوعات</a>
+            <a href="11_morphology.html">عملگرهای مورفولوژی</a>
+            <a href="13_edge_detection.html">تشخیص لبه‌ها</a>
+        </div>
+
+        <h1>سگمنتیشن (Segmentation)</h1>
+
+        <div class="definition">
+            <h2>تعریف</h2>
+            <p><strong>سگمنتیشن</strong> فرآیند تقسیم تصویر به نواحی همگن و معنادار است. هدف جداسازی اشیاء یا نواحی مورد علاقه از پس‌زمینه است.</p>
+        </div>
+
+        <h2>انواع روش‌های سگمنتیشن</h2>
+
+        <h3>1. سگمنتیشن مبتنی بر آستانه (Thresholding)</h3>
+        <div class="formula">
+            $$g(x,y) = \begin{cases}
+            1 & \text{if } f(x,y) > T \\
+            0 & \text{otherwise}
+            \end{cases}$$
+        </div>
+
+        <h4>انواع آستانه‌گیری:</h4>
+        <ul>
+            <li><strong>آستانه ثابت:</strong> $T$ ثابت برای کل تصویر</li>
+            <li><strong>آستانه متغیر:</strong> $T(x,y)$ برای هر پیکسل</li>
+            <li><strong>آستانه چندگانه:</strong> چند سطح آستانه</li>
+            <li><strong>آستانه خودکار:</strong> انتخاب خودکار بر اساس هیستوگرام</li>
+        </ul>
+
+        <h4>روش Otsu:</h4>
+        <p>انتخاب خودکار آستانه بهینه بر اساس واریانس بین کلاس‌ها:</p>
+        <div class="formula">
+            $$\sigma_B^2(T) = \omega_0(T)\omega_1(T)[\mu_0(T) - \mu_1(T)]^2$$
+        </div>
+        <p>انتخاب $T$ که $\sigma_B^2$ را ماکزیمم کند.</p>
+
+        <h3>2. سگمنتیشن مبتنی بر ناحیه (Region-based)</h3>
+
+        <h4>الف) Region Growing</h4>
+        <p>شروع از seed points و رشد ناحیه:</p>
+        <ol>
+            <li>انتخاب seed points</li>
+            <li>افزودن پیکسل‌های همسایه با ویژگی مشابه</li>
+            <li>تکرار تا عدم تغییر</li>
+        </ol>
+
+        <h4>ب) Region Splitting and Merging</h4>
+        <p>تقسیم و ادغام نواحی:</p>
+        <ul>
+            <li><strong>Splitting:</strong> تقسیم ناحیه ناهمگن</li>
+            <li><strong>Merging:</strong> ادغام نواحی مشابه</li>
+        </ul>
+
+        <h4>ج) Watershed</h4>
+        <p>استفاده از مفهوم watershed در توپوگرافی:</p>
+        <ul>
+            <li>تصویر به عنوان یک سطح توپوگرافی</li>
+            <li>جستجوی خطوط تقسیم آب (watershed lines)</li>
+            <li>مناسب برای جداسازی اشیاء متصل</li>
+        </ul>
+
+        <h3>3. سگمنتیشن مبتنی بر لبه (Edge-based)</h3>
+        <p>استفاده از لبه‌ها برای تعیین مرز نواحی:</p>
+        <ol>
+            <li>تشخیص لبه‌ها</li>
+            <li>اتصال لبه‌ها</li>
+            <li>تشکیل مرزهای بسته</li>
+        </ol>
+
+        <h3>4. سگمنتیشن مبتنی بر خوشه‌بندی (Clustering)</h3>
+        <ul>
+            <li><strong>K-means:</strong> تقسیم به K خوشه</li>
+            <li><strong>Fuzzy C-means:</strong> عضویت فازی</li>
+            <li><strong>Mean Shift:</strong> جستجوی mode در توزیع</li>
+        </ul>
+
+        <h2>معیارهای همگنی</h2>
+        <div class="highlight">
+            <ul>
+                <li><strong>شدت:</strong> پیکسل‌های با شدت مشابه</li>
+                <li><strong>بافت:</strong> پیکسل‌های با بافت مشابه</li>
+                <li><strong>رنگ:</strong> پیکسل‌های با رنگ مشابه</li>
+                <li><strong>گرادیان:</strong> پیکسل‌های با گرادیان مشابه</li>
+            </ul>
+        </div>
+
+        <h2>مزایا و محدودیت‌ها</h2>
+        <div class="definition">
+            <h3>مزایا:</h3>
+            <ul>
+                <li>جداسازی اشیاء از پس‌زمینه</li>
+                <li>پیش‌پردازش برای تحلیل</li>
+                <li>کاهش پیچیدگی داده</li>
+            </ul>
+
+            <h3>محدودیت‌ها:</h3>
+            <ul>
+                <li>نیاز به انتخاب پارامترها</li>
+                <li>حساس به نویز</li>
+                <li>ممکن است oversegmentation یا undersegmentation ایجاد کند</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        <ul>
+            <li>تشخیص اشیاء</li>
+            <li>پردازش تصاویر پزشکی</li>
+            <li>تحلیل تصاویر ماهواره‌ای</li>
+            <li>تشخیص چهره</li>
+            <li>سیستم‌های بینایی ماشین</li>
+        </ul>
+
+        <h2>ارزیابی سگمنتیشن</h2>
+        <ul>
+            <li><strong>دقت:</strong> درصد پیکسل‌های صحیح</li>
+            <li><strong>IoU (Intersection over Union):</strong> نسبت اشتراک به اجتماع</li>
+            <li><strong>Dice Coefficient:</strong> معیار شباهت</li>
+        </ul>
+
+        <h2>مثال عملی</h2>
+        <div class="highlight">
+            <h3>سگمنتیشن یک تصویر پزشکی:</h3>
+            <ol>
+                <li>پیش‌پردازش (حذف نویز)</li>
+                <li>آستانه‌گیری برای جداسازی بافت</li>
+                <li>مورفولوژی برای بهبود نتیجه</li>
+                <li>حذف نواحی کوچک</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="13_edge_detection.html">تشخیص لبه‌ها</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>موضوعات مهم پردازش تصویر</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+        .topic-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 5px solid #3498db;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .topic-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-right-color: #2980b9;
+        }
+        .topic-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            display: block;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .topic-item a:hover {
+            color: #3498db;
+        }
+        .topic-description {
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #34495e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2c3e50;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← بازگشت به صفحه اصلی</a>
+        
+        <h1>موضوعات مهم پردازش تصویر</h1>
+        <div class="subtitle">مجموعه جامع از مهم‌ترین مفاهیم و تکنیک‌های پردازش تصویر</div>
+
+        <ul class="topic-list">
+            <li class="topic-item">
+                <a href="01_spatial_domain.html">1. بهبود تصویر در حوزه مکان (Spatial Domain)</a>
+                <div class="topic-description">
+                    پردازش مستقیم پیکسل‌های تصویر، تبدیلات شدت، و تکنیک‌های ارتقای تصویر در حوزه مکانی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="02_histogram_equalization.html">2. تساوی‌سازی هیستوگرام (Histogram Equalization)</a>
+                <div class="topic-description">
+                    بهبود کنتراست تصویر با استفاده از تبدیل هیستوگرام به توزیع یکنواخت
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="03_neighborhood_filters.html">3. فیلترهای همسایگی (Neighborhood Filters)</a>
+                <div class="topic-description">
+                    فیلترهای مکانی که بر روی همسایگی پیکسل‌ها عمل می‌کنند و انواع مختلف آنها
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="04_smoothing_sharpening.html">4. تفاوت فیلترهای صاف‌کننده و تیزکننده</a>
+                <div class="topic-description">
+                    مقایسه فیلترهای صاف‌کننده (Smoothing) و تیزکننده (Sharpening) و کاربردهای هر یک
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="05_frequency_domain.html">5. پردازش تصویر در حوزه فرکانس</a>
+                <div class="topic-description">
+                    تبدیل فوریه، پردازش در حوزه فرکانس، و مزایای آن نسبت به حوزه مکانی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="06_convolution.html">6. تئوری کانولوشن (Convolution Theory)</a>
+                <div class="topic-description">
+                    تعریف ریاضی کانولوشن، خواص آن، و کاربرد در فیلترگذاری تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="07_lowpass_highpass.html">7. فیلترهای پایین‌گذر و بالاگذر</a>
+                <div class="topic-description">
+                    فیلترهای پایین‌گذر (Low-pass) برای حذف نویز و بالاگذر (High-pass) برای تیز کردن تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="08_image_restoration.html">8. بازیابی تصویر (Image Restoration)</a>
+                <div class="topic-description">
+                    ترمیم تصاویر تخریب شده، مدل تنزل کیفیت، و روش‌های بازیابی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="09_noise_filters.html">9. انواع نویزها و فیلترهای مناسب آنها</a>
+                <div class="topic-description">
+                    نویز گاوسی، نمکی-فلفلی، یکنواخت، و فیلترهای مناسب برای حذف هر نوع نویز
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="10_adaptive_filters.html">10. فیلترهای تطبیقی (Adaptive Filters)</a>
+                <div class="topic-description">
+                    فیلترهایی که پارامترهای خود را بر اساس ویژگی‌های محلی تصویر تنظیم می‌کنند
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="11_morphology.html">11. عملگرهای مورفولوژی (Morphological Operators)</a>
+                <div class="topic-description">
+                    عملگرهای دایلیشن، اروژن، باز کردن، بستن، و کاربردهای آنها در پردازش تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="12_segmentation.html">12. سگمنتیشن (Segmentation)</a>
+                <div class="topic-description">
+                    تقسیم تصویر به نواحی همگن، روش‌های مبتنی بر آستانه، و روش‌های مبتنی بر ناحیه
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="13_edge_detection.html">13. تشخیص لبه‌ها (Edge Detection)</a>
+                <div class="topic-description">
+                    عملگرهای گرادیان، لاپلاسین، کانی، و روش‌های مختلف تشخیص لبه در تصویر
+                </div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p>تهیه شده بر اساس کتاب پردازش تصویر</p>
+            <p>دکتر ملیحه ثابتی - استادیار گروه کامپیوتر دانشگاه آزاد اسلامی واحد تهران شمال</p>
+        </div>
+    </div>
+</body>
+</html>
+
