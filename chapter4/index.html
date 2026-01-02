@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>فهرست مطالب - فصل چهارم: فیلتر در حوزه فرکانس</title>
+    <style>
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+        .topic-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 5px solid #3498db;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .topic-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-right-color: #2980b9;
+        }
+        .topic-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            display: block;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .topic-item a:hover {
+            color: #3498db;
+        }
+        .topic-description {
+            color: #555;
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .chapter-info {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-right: 4px solid #3498db;
+        }
+        .chapter-info h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            color: #7f8c8d;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← بازگشت به فهرست فصول</a>
+        
+        <h1>فصل چهارم: فیلتر در حوزه فرکانس</h1>
+        <div class="subtitle">تبدیل فوریه و فیلترگذاری در حوزه فرکانس</div>
+
+        <div class="chapter-info">
+            <h2>درباره این فصل</h2>
+            <p>این فصل به بررسی <strong>فیلترگذاری در حوزه فرکانس</strong> می‌پردازد. تبدیل فوریه یکی از مهم‌ترین ابزارهای ریاضی در پردازش تصویر است که به ما امکان تحلیل و پردازش تصاویر در حوزه فرکانس را می‌دهد. در این فصل با مفاهیم پایه تبدیل فوریه، اعداد مختلط، سری فوریه، تبدیل فوریه یک و دو متغیره، تبدیل فوریه گسسته (DFT)، و انواع فیلترهای فرکانسی آشنا می‌شوید.</p>
+        </div>
+
+        <ul class="topic-list">
+            <li class="topic-item">
+                <a href="01_introduction.html">1. مقدمه تبدیل فوریه</a>
+                <div class="topic-description">
+                    آشنایی با مفهوم تبدیل فوریه، نمایش توابع متناوب به صورت مجموع سینوس‌ها و کسینوس‌ها، و ویژگی‌های مهم تبدیل فوریه
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="02_complex_numbers.html">2. اعداد مختلط</a>
+                <div class="topic-description">
+                    تعریف اعداد مختلط، نمایش دکارتی و قطبی، مزدوج مختلط، و فرمول اویلر برای کار با اعداد مختلط
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="03_fourier_series.html">3. سری فوریه</a>
+                <div class="topic-description">
+                    تعریف سری فوریه برای توابع متناوب، محاسبه ضرایب سری فوریه، و نمایش توابع به صورت مجموع نمایی‌های مختلط
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="04_impulse_functions.html">4. تابع ضربه و قطار ضربه</a>
+                <div class="topic-description">
+                    تعریف تابع ضربه واحد (unit impulse)، خاصیت همانی، و قطار ضربه (impulse train) برای نمونه‌برداری
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="05_one_variable_ft.html">5. تبدیل فوریه یک متغیره</a>
+                <div class="topic-description">
+                    تعریف تبدیل فوریه پیوسته یک متغیره، تبدیل معکوس فوریه، و مثال تبدیل فوریه پالس مستطیلی
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="06_two_variable_ft.html">6. تبدیل فوریه دو متغیره</a>
+                <div class="topic-description">
+                    تبدیل فوریه برای تصاویر دو بعدی، تبدیل معکوس دو بعدی، و ویژگی‌های تبدیل فوریه دو متغیره
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="07_dft.html">7. تبدیل فوریه گسسته (DFT)</a>
+                <div class="topic-description">
+                    تبدیل فوریه گسسته برای تصاویر دیجیتال، محاسبه DFT، و ویژگی‌های مهم DFT در پردازش تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="08_fft.html">8. تبدیل فوریه سریع (FFT)</a>
+                <div class="topic-description">
+                    الگوریتم FFT برای محاسبه کارآمد DFT، پیچیدگی محاسباتی، و کاربردهای FFT در پردازش تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="09_filtering_basics.html">9. مبانی فیلترگذاری در حوزه فرکانس</a>
+                <div class="topic-description">
+                    اصول فیلترگذاری در حوزه فرکانس، رابطه بین فیلترگذاری در حوزه مکان و فرکانس، و مفهوم تابع انتقال
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="10_lowpass_filters.html">10. فیلترهای پایین‌گذر</a>
+                <div class="topic-description">
+                    فیلترهای پایین‌گذر ایده‌آل، باترورث، و گوسی، ویژگی‌های هر کدام، و کاربردهای آنها در حذف نویز و هموار کردن تصویر
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="11_highpass_filters.html">11. فیلترهای بالاگذر</a>
+                <div class="topic-description">
+                    فیلترهای بالاگذر ایده‌آل، باترورث، و گوسی، فیلتر بالاگذر اصلاح شده، و کاربردهای آنها در تیز کردن و تشخیص لبه
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="12_homomorphic_filtering.html">12. فیلترگذاری همومورفیک</a>
+                <div class="topic-description">
+                    مدل ضربی روشنایی-بازتاب، تبدیل لگاریتمی، فیلترگذاری در حوزه فرکانس، و کاربرد در ارتقای تصاویر با روشنایی ناهموار
+                </div>
+            </li>
+
+            <li class="topic-item">
+                <a href="13_selective_filtering.html">13. فیلترگذاری انتخابی</a>
+                <div class="topic-description">
+                    فیلترهای حذف باند (bandreject)، فیلترهای میان‌گذر (bandpass)، و فیلترهای فاقی (notch filters) برای پردازش انتخابی فرکانس‌ها
+                </div>
+            </li>
+        </ul>
+
+        <div style="background-color: #e8f5e9; padding: 20px; border-radius: 10px; margin-top: 30px; border-right: 4px solid #4caf50;">
+            <h2 style="color: #2c3e50; margin-top: 0;">بررسی کامل فصل</h2>
+            <p>برای بررسی کامل موضوعات پوشش داده شده و اطمینان از عدم وجود موضوعات از قلم افتاده، به صفحه بررسی مراجعه کنید:</p>
+            <p style="text-align: center; margin-top: 15px;">
+                <a href="review.html" style="background-color: #4caf50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">صفحه بررسی فصل</a>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>تهیه شده بر اساس فصل چهارم کتاب پردازش تصویر</p>
+            <p>دکتر ملیحه ثابتی - استادیار گروه کامپیوتر دانشگاه آزاد اسلامی واحد تهران شمال</p>
+        </div>
+    </div>
+</body>
+</html>
+

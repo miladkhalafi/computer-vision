@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - تابع ضربه و قطار ضربه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="03_fourier_series.html">قبلی: سری فوریه</a>
+            <a href="05_one_variable_ft.html">بعدی: تبدیل فوریه یک متغیره</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: تابع ضربه و قطار ضربه</h1>
+
+        <div class="definition">
+            <h2>تابع ضربه واحد (Unit Impulse)</h2>
+            <p>این تابع که با $\delta(t)$ نمایش داده می‌شود به صورت زیر تعریف می‌شود:</p>
+            <div class="formula">
+                $$\delta(t) = \begin{cases}
+                \infty & \text{if } t = 0 \\
+                0 & \text{if } t \ne 0
+                \end{cases}$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>خاصیت همانی (Identity Property)</h3>
+            <p>این تابع مقید است که خاصیت همانی را برآورده کند:</p>
+            <div class="formula">
+                $$\int_{-\infty}^{\infty} \delta(t) dt = 1$$
+            </div>
+        </div>
+
+        <h2>ویژگی‌های مهم تابع ضربه</h2>
+        
+        <ul>
+            <li><strong>خاصیت نمونه‌برداری (Sifting Property):</strong>
+                <div class="formula">
+                    $$\int_{-\infty}^{\infty} f(t) \delta(t - t_0) dt = f(t_0)$$
+                </div>
+            </li>
+            <li><strong>مقیاس‌گذاری:</strong> $\delta(at) = \frac{1}{|a|}\delta(t)$</li>
+            <li><strong>تقارن:</strong> $\delta(-t) = \delta(t)$</li>
+        </ul>
+
+        <h2>تبدیل فوریه تابع ضربه</h2>
+        
+        <div class="definition">
+            <p>تبدیل فوریه تابع ضربه واحد برابر است با:</p>
+            <div class="formula">
+                $$F\{\delta(t)\} = \int_{-\infty}^{\infty} \delta(t) e^{-j2\pi\mu t} dt = 1$$
+            </div>
+            <p>یعنی تابع ضربه در تمام فرکانس‌ها دارای دامنه یکسان است.</p>
+        </div>
+
+        <h2>قطار ضربه (Impulse Train)</h2>
+        
+        <div class="definition">
+            <p>این تابع به صورت مجموع نامتناهی از ضربه‌های متناوب با فاصله $\Delta T$ واحد از هم، تعریف می‌شود:</p>
+            <div class="formula">
+                $$\delta_{\Delta T}(t) = \sum_{n=-\infty}^{\infty} \delta(t - n \Delta T)$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>ویژگی‌های قطار ضربه</h3>
+            <ul>
+                <li>تابعی <strong>متناوب</strong> با تناوب $\Delta T$ است</li>
+                <li>در پردازش سیگنال برای <strong>نمونه‌برداری</strong> استفاده می‌شود</li>
+                <li>تبدیل فوریه آن نیز یک قطار ضربه در حوزه فرکانس است</li>
+            </ul>
+        </div>
+
+        <h2>تبدیل فوریه قطار ضربه</h2>
+        
+        <div class="definition">
+            <p>تبدیل فوریه قطار ضربه:</p>
+            <div class="formula">
+                $$F\{\delta_{\Delta T}(t)\} = \frac{1}{\Delta T} \sum_{n=-\infty}^{\infty} \delta\left(\mu - \frac{n}{\Delta T}\right)$$
+            </div>
+            <p>یعنی در حوزه فرکانس نیز یک قطار ضربه با فاصله $1/\Delta T$ داریم.</p>
+        </div>
+
+        <h2>کاربرد در نمونه‌برداری</h2>
+        
+        <div class="highlight">
+            <p>قطار ضربه برای <strong>نمونه‌برداری</strong> سیگنال‌های پیوسته استفاده می‌شود:</p>
+            <ul>
+                <li>ضرب یک سیگنال پیوسته در قطار ضربه، نمونه‌های گسسته تولید می‌کند</li>
+                <li>فاصله نمونه‌برداری: $\Delta T$</li>
+                <li>فرکانس نمونه‌برداری: $f_s = 1/\Delta T$</li>
+                <li>قضیه نمونه‌برداری نایکوئیست: $f_s \geq 2f_{max}$</li>
+            </ul>
+        </div>
+
+        <h2>تابع ضربه دو بعدی</h2>
+        
+        <div class="definition">
+            <p>برای تصاویر دو بعدی، تابع ضربه به صورت زیر تعریف می‌شود:</p>
+            <div class="formula">
+                $$\delta(x, y) = \begin{cases}
+                \infty & \text{if } x = 0 \text{ and } y = 0 \\
+                0 & \text{otherwise}
+                \end{cases}$$
+            </div>
+            <p>با خاصیت:</p>
+            <div class="formula">
+                $$\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \delta(x, y) dx dy = 1$$
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="05_one_variable_ft.html">تبدیل فوریه یک متغیره</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

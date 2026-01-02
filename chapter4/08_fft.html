@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - تبدیل فوریه سریع (FFT)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="07_dft.html">قبلی: تبدیل فوریه گسسته</a>
+            <a href="09_filtering_basics.html">بعدی: مبانی فیلترگذاری</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: تبدیل فوریه سریع (FFT)</h1>
+
+        <div class="definition">
+            <h2>مشکل محاسباتی DFT</h2>
+            <p>محاسبه مستقیم تبدیل فوریه گسسته (DFT) برای تصویر $M \times N$ نیاز به $O(M^2N^2)$ عملیات دارد که برای تصاویر بزرگ بسیار کند است.</p>
+        </div>
+
+        <h2>الگوریتم FFT</h2>
+        
+        <div class="highlight">
+            <h3>تبدیل فوریه سریع (Fast Fourier Transform)</h3>
+            <p>الگوریتم FFT که توسط Cooley و Tukey در سال 1965 ارائه شد، پیچیدگی محاسباتی را به <strong>$O(MN \log(MN))$</strong> کاهش می‌دهد.</p>
+        </div>
+
+        <h2>ایده اصلی FFT</h2>
+        
+        <div class="definition">
+            <h3>تقسیم و حل (Divide and Conquer)</h3>
+            <p>الگوریتم FFT از این ایده استفاده می‌کند که:</p>
+            <ul>
+                <li>DFT یک دنباله $N$ تایی را می‌توان به دو DFT با اندازه $N/2$ تقسیم کرد</li>
+                <li>این تقسیم‌بندی را به صورت بازگشتی ادامه می‌دهد</li>
+                <li>در نهایت به DFT های کوچک (مثلاً $N=2$) می‌رسد</li>
+            </ul>
+        </div>
+
+        <h2>FFT یک بعدی</h2>
+        
+        <div class="formula">
+            <p>برای دنباله $f(x)$ با طول $N$ (که $N$ توانی از 2 است):</p>
+            <p>$$F(u) = \sum_{x=0}^{N-1} f(x) W_N^{ux}$$</p>
+            <p>که در آن $W_N = e^{-j2\pi/N}$ است.</p>
+        </div>
+
+        <div class="highlight">
+            <h3>تقسیم به دو بخش</h3>
+            <p>می‌توان $F(u)$ را به دو بخش تقسیم کرد:</p>
+            <ul>
+                <li>بخش زوج: $F_{even}(u)$</li>
+                <li>بخش فرد: $F_{odd}(u)$</li>
+            </ul>
+            <p>هر کدام یک DFT با اندازه $N/2$ هستند.</p>
+        </div>
+
+        <h2>FFT دو بعدی</h2>
+        
+        <div class="definition">
+            <p>برای تصویر دو بعدی، FFT را می‌توان به صورت زیر محاسبه کرد:</p>
+            <ol>
+                <li>ابتدا FFT را روی هر سطر اعمال می‌کنیم (FFT یک بعدی)</li>
+                <li>سپس FFT را روی هر ستون اعمال می‌کنیم (FFT یک بعدی)</li>
+            </ol>
+            <p>این روش <strong>separable</strong> نامیده می‌شود.</p>
+        </div>
+
+        <h2>مزایای FFT</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>سرعت بالا:</strong> کاهش چشمگیر در زمان محاسبه</li>
+                <li><strong>کارایی:</strong> برای تصاویر بزرگ، تفاوت سرعت بسیار قابل توجه است</li>
+                <li><strong>دقت:</strong> همان دقت DFT را دارد</li>
+                <li><strong>پیاده‌سازی:</strong> کتابخانه‌های بهینه‌شده موجود است</li>
+            </ul>
+        </div>
+
+        <h2>مقایسه سرعت</h2>
+        
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background-color: #3498db; color: white;">
+                <th style="padding: 10px; border: 1px solid #ddd;">اندازه تصویر</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">DFT مستقیم</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">FFT</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">نسبت بهبود</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">64 × 64</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~17M عملیات</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~24K عملیات</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~700×</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">256 × 256</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~4.3B عملیات</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~1.6M عملیات</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~2700×</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">512 × 512</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~68B عملیات</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~4.7M عملیات</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">~14500×</td>
+            </tr>
+        </table>
+
+        <h2>محدودیت‌های FFT</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>اندازه توان 2:</strong> الگوریتم کلاسیک FFT نیاز به اندازه توان 2 دارد</li>
+                <li><strong>راه حل:</strong> می‌توان تصویر را با padding به اندازه مناسب رساند</li>
+                <li><strong>FFT عمومی:</strong> الگوریتم‌های FFT برای اندازه‌های دلخواه نیز وجود دارد</li>
+            </ul>
+        </div>
+
+        <h2>پیاده‌سازی</h2>
+        
+        <div class="highlight">
+            <p>کتابخانه‌های معروف برای FFT:</p>
+            <ul>
+                <li><strong>FFTW:</strong> Fastest Fourier Transform in the West (C/C++)</li>
+                <li><strong>NumPy:</strong> numpy.fft (Python)</li>
+                <li><strong>OpenCV:</strong> cv2.dft (C++/Python)</li>
+                <li><strong>MATLAB:</strong> fft, fft2 (MATLAB)</li>
+            </ul>
+        </div>
+
+        <h2>کاربرد در پردازش تصویر</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>فیلترگذاری:</strong> تبدیل به حوزه فرکانس، ضرب، تبدیل معکوس</li>
+                <li><strong>همبستگی:</strong> محاسبه همبستگی متقابل در حوزه فرکانس</li>
+                <li><strong>فشرده‌سازی:</strong> تبدیل به حوزه فرکانس برای فشرده‌سازی</li>
+                <li><strong>تحلیل:</strong> تحلیل طیفی تصویر</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="09_filtering_basics.html">مبانی فیلترگذاری در حوزه فرکانس</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

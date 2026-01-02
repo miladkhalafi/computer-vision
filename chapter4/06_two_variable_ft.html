@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - تبدیل فوریه دو متغیره</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="05_one_variable_ft.html">قبلی: تبدیل فوریه یک متغیره</a>
+            <a href="07_dft.html">بعدی: تبدیل فوریه گسسته</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: تبدیل فوریه دو متغیره</h1>
+
+        <div class="definition">
+            <h2>تعریف تبدیل فوریه دو متغیره</h2>
+            <p>برای تصویر دو بعدی $f(x, y)$، تبدیل فوریه به صورت زیر تعریف می‌شود:</p>
+            <div class="formula">
+                $$F\{f(x, y)\} = F(u, v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-j2\pi(ux + vy)} dx dy$$
+            </div>
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$(x, y)$</strong>: مختصات فضایی (حوزه مکان)</li>
+                <li><strong>$(u, v)$</strong>: مختصات فرکانسی (حوزه فرکانس)</li>
+                <li><strong>$F(u, v)$</strong>: طیف فرکانسی دو بعدی</li>
+            </ul>
+        </div>
+
+        <h2>تبدیل معکوس فوریه دو بعدی</h2>
+        
+        <div class="definition">
+            <p>تبدیل معکوس فوریه دو بعدی:</p>
+            <div class="formula">
+                $$f(x, y) = F^{-1}\{F(u, v)\} = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u, v) e^{j2\pi(ux + vy)} du dv$$
+            </div>
+        </div>
+
+        <h2>ویژگی‌های تبدیل فوریه دو بعدی</h2>
+        
+        <ul>
+            <li><strong>خطی بودن:</strong> $F\{af(x,y) + bg(x,y)\} = aF(u,v) + bG(u,v)$</li>
+            <li><strong>جابجایی:</strong> $F\{f(x-x_0, y-y_0)\} = F(u,v) e^{-j2\pi(ux_0 + vy_0)}$</li>
+            <li><strong>مقیاس‌گذاری:</strong> $F\{f(ax, by)\} = \frac{1}{|ab|}F\left(\frac{u}{a}, \frac{v}{b}\right)$</li>
+            <li><strong>کانولوشن:</strong> $F\{f(x,y) * g(x,y)\} = F(u,v) \cdot G(u,v)$</li>
+            <li><strong>ضرب:</strong> $F\{f(x,y) \cdot g(x,y)\} = F(u,v) * G(u,v)$</li>
+            <li><strong>چرخش:</strong> اگر تصویر بچرخد، طیف نیز به همان زاویه می‌چرخد</li>
+        </ul>
+
+        <h2>نمایش طیف دو بعدی</h2>
+        
+        <div class="definition">
+            <p>تبدیل فوریه $F(u, v)$ یک تابع مختلط است:</p>
+            <div class="formula">
+                $$F(u, v) = |F(u, v)| e^{j\phi(u, v)}$$
+            </div>
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$|F(u, v)|$</strong>: طیف دامنه (Magnitude Spectrum)</li>
+                <li><strong>$\phi(u, v)$</strong>: طیف فاز (Phase Spectrum)</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>نمایش طیف</h3>
+            <p>معمولاً طیف دامنه را به صورت لگاریتمی نمایش می‌دهند:</p>
+            <div class="formula">
+                $$D(u, v) = \log(1 + |F(u, v)|)$$
+            </div>
+            <p>این کار به دلیل دامنه وسیع مقادیر طیف است.</p>
+        </div>
+
+        <h2>ویژگی‌های خاص برای تصاویر حقیقی</h2>
+        
+        <div class="definition">
+            <p>برای تصاویر حقیقی $f(x, y)$:</p>
+            <ul>
+                <li><strong>تقارن مزدوج:</strong> $F(-u, -v) = F^*(u, v)$</li>
+                <li><strong>تقارن طیف دامنه:</strong> $|F(-u, -v)| = |F(u, v)|$</li>
+                <li><strong>تقارن طیف فاز:</strong> $\phi(-u, -v) = -\phi(u, v)$</li>
+            </ul>
+        </div>
+
+        <h2>فاصله از مرکز</h2>
+        
+        <div class="highlight">
+            <p>در پردازش تصویر، معمولاً مرکز تصویر را به $(M/2, N/2)$ منتقل می‌کنند. فاصله از مرکز:</p>
+            <div class="formula">
+                $$D(u, v) = \sqrt{(u - M/2)^2 + (v - N/2)^2}$$
+            </div>
+            <p>این فاصله در تعریف فیلترهای فرکانسی استفاده می‌شود.</p>
+        </div>
+
+        <h2>کاربرد در پردازش تصویر</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>تحلیل فرکانسی:</strong> شناسایی الگوهای تکراری و نویز</li>
+                <li><strong>فیلترگذاری:</strong> حذف یا تقویت فرکانس‌های خاص</li>
+                <li><strong>تشخیص لبه:</strong> استفاده از فیلترهای بالاگذر</li>
+                <li><strong>هموارسازی:</strong> استفاده از فیلترهای پایین‌گذر</li>
+                <li><strong>فشرده‌سازی:</strong> استفاده از ویژگی‌های فرکانسی</li>
+            </ul>
+        </div>
+
+        <h2>مثال: تبدیل فوریه پالس مستطیلی دو بعدی</h2>
+        
+        <div class="definition">
+            <p>برای یک پالس مستطیلی $W \times H$:</p>
+            <div class="formula">
+                $$F(u, v) = WH \frac{\sin(\pi u W)}{\pi u W} \frac{\sin(\pi v H)}{\pi v H}$$
+            </div>
+            <p>این تابع حاصل ضرب دو تابع sinc است.</p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="07_dft.html">تبدیل فوریه گسسته (DFT)</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - اعداد مختلط</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="01_introduction.html">قبلی: مقدمه</a>
+            <a href="03_fourier_series.html">بعدی: سری فوریه</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: اعداد مختلط</h1>
+
+        <div class="definition">
+            <h2>تعریف عدد مختلط</h2>
+            <p>عدد مختلط $C$ به صورت زیر تعریف می‌شود:</p>
+            <div class="formula">
+                $$C = R + jI$$
+            </div>
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$R$</strong> و <strong>$I$</strong> اعداد حقیقی هستند</li>
+                <li><strong>$j$</strong> یک عدد موهومی است که برابر با $\sqrt{-1}$ است</li>
+                <li><strong>$R$</strong> نشان‌دهنده بخش حقیقی (Real part) است</li>
+                <li><strong>$I$</strong> نشان‌دهنده بخش موهومی (Imaginary part) است</li>
+            </ul>
+        </div>
+
+        <h2>اعداد حقیقی زیرمجموعه اعداد مختلط</h2>
+        
+        <div class="highlight">
+            <p>اعداد حقیقی زیرمجموعه‌ای از اعداد مختلط هستند که در آنها $I = 0$ است.</p>
+        </div>
+
+        <h2>مزدوج مختلط (Complex Conjugate)</h2>
+        
+        <div class="definition">
+            <p>مزدوج یک عدد مختلط که با $C^*$ نشان داده می‌شود برابر است با:</p>
+            <div class="formula">
+                $$C^* = R - jI$$
+            </div>
+            <p>یعنی فقط علامت بخش موهومی تغییر می‌کند.</p>
+        </div>
+
+        <h2>نمایش قطبی اعداد مختلط</h2>
+        
+        <div class="highlight">
+            <p>گاهی بهتر است اعداد مختلط در <strong>مختصات قطبی</strong> نمایش داده شوند:</p>
+            <div class="formula">
+                $$C = |C|(\cos\theta + j\sin\theta)$$
+            </div>
+        </div>
+
+        <div class="definition">
+            <h3>پارامترهای نمایش قطبی</h3>
+            <ul>
+                <li><strong>$|C| = \sqrt{R^2 + I^2}$</strong>: برابر با طول بردار است که از مبدا صفحه مختلط به نقطه $(R,I)$ امتداد دارد</li>
+                <li><strong>$\theta = \arctan(I/R)$</strong>: زاویه بین بردار و محور حقیقی</li>
+            </ul>
+        </div>
+
+        <h2>فرمول اویلر</h2>
+        
+        <div class="definition">
+            <p>از آنجایی که $e^{j\theta} = \cos\theta + j\sin\theta$ می‌باشد، خواهیم داشت:</p>
+            <div class="formula">
+                $$C = |C|e^{j\theta}$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>اهمیت فرمول اویلر</h3>
+            <p>فرمول اویلر یکی از مهم‌ترین فرمول‌های ریاضی است که:</p>
+            <ul>
+                <li>ارتباط بین توابع مثلثاتی و نمایی را برقرار می‌کند</li>
+                <li>در تبدیل فوریه به طور گسترده استفاده می‌شود</li>
+                <li>محاسبات را ساده‌تر می‌کند</li>
+            </ul>
+        </div>
+
+        <h2>ویژگی‌های مهم اعداد مختلط</h2>
+        
+        <ul>
+            <li><strong>جمع:</strong> $(R_1 + jI_1) + (R_2 + jI_2) = (R_1 + R_2) + j(I_1 + I_2)$</li>
+            <li><strong>ضرب:</strong> $(R_1 + jI_1)(R_2 + jI_2) = (R_1R_2 - I_1I_2) + j(R_1I_2 + R_2I_1)$</li>
+            <li><strong>قدر مطلق:</strong> $|C|^2 = C \cdot C^* = R^2 + I^2$</li>
+            <li><strong>قدر مطلق حاصل ضرب:</strong> $|C_1 \cdot C_2| = |C_1| \cdot |C_2|$</li>
+        </ul>
+
+        <h2>کاربرد در تبدیل فوریه</h2>
+        
+        <div class="highlight">
+            <p>در تبدیل فوریه، از اعداد مختلط برای:</p>
+            <ul>
+                <li>نمایش دامنه و فاز سیگنال</li>
+                <li>محاسبه تبدیل فوریه با استفاده از $e^{-j2\pi\mu t}$</li>
+                <li>تحلیل طیف فرکانسی</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="03_fourier_series.html">سری فوریه</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - مبانی فیلترگذاری در حوزه فرکانس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="08_fft.html">قبلی: تبدیل فوریه سریع</a>
+            <a href="10_lowpass_filters.html">بعدی: فیلترهای پایین‌گذر</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: مبانی فیلترگذاری</h1>
+
+        <div class="definition">
+            <h2>فیلترگذاری در حوزه فرکانس</h2>
+            <p>فیلترگذاری در حوزه فرکانس شامل مراحل زیر است:</p>
+            <ol>
+                <li>تبدیل تصویر به حوزه فرکانس با استفاده از DFT</li>
+                <li>ضرب طیف تصویر در تابع انتقال فیلتر $H(u, v)$</li>
+                <li>تبدیل معکوس به حوزه مکان</li>
+            </ol>
+        </div>
+
+        <h2>رابطه فیلترگذاری</h2>
+        
+        <div class="formula">
+            <p>اگر $f(x, y)$ تصویر ورودی و $H(u, v)$ تابع انتقال فیلتر باشد:</p>
+            <p>$$G(u, v) = H(u, v) \cdot F(u, v)$$</p>
+            <p>$$g(x, y) = F^{-1}\{G(u, v)\}$$</p>
+        </div>
+
+        <div class="highlight">
+            <h3>قضیه کانولوشن</h3>
+            <p>فیلترگذاری در حوزه فرکانس معادل کانولوشن در حوزه مکان است:</p>
+            <div class="formula">
+                $$g(x, y) = f(x, y) * h(x, y) \Leftrightarrow G(u, v) = F(u, v) \cdot H(u, v)$$
+            </div>
+        </div>
+
+        <h2>تابع انتقال (Transfer Function)</h2>
+        
+        <div class="definition">
+            <p>تابع انتقال $H(u, v)$ مشخص می‌کند که هر فرکانس چقدر تقویت یا تضعیف می‌شود:</p>
+            <ul>
+                <li><strong>$H(u, v) = 1$:</strong> فرکانس بدون تغییر عبور می‌کند</li>
+                <li><strong>$H(u, v) = 0$:</strong> فرکانس کاملاً حذف می‌شود</li>
+                <li><strong>$0 < H(u, v) < 1$:</strong> فرکانس تضعیف می‌شود</li>
+                <li><strong>$H(u, v) > 1$:</strong> فرکانس تقویت می‌شود</li>
+            </ul>
+        </div>
+
+        <h2>انواع فیلترها</h2>
+        
+        <div class="highlight">
+            <h3>1. فیلتر پایین‌گذر (Low-pass Filter)</h3>
+            <ul>
+                <li>فرکانس‌های پایین را عبور می‌دهد</li>
+                <li>فرکانس‌های بالا را حذف می‌کند</li>
+                <li>کاربرد: هموار کردن، حذف نویز</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>2. فیلتر بالاگذر (High-pass Filter)</h3>
+            <ul>
+                <li>فرکانس‌های بالا را عبور می‌دهد</li>
+                <li>فرکانس‌های پایین را حذف می‌کند</li>
+                <li>کاربرد: تیز کردن، تشخیص لبه</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>3. فیلتر میان‌گذر (Band-pass Filter)</h3>
+            <ul>
+                <li>فقط باند خاصی از فرکانس‌ها را عبور می‌دهد</li>
+                <li>کاربرد: استخراج الگوهای خاص</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>4. فیلتر حذف باند (Band-reject Filter)</h3>
+            <ul>
+                <li>باند خاصی از فرکانس‌ها را حذف می‌کند</li>
+                <li>کاربرد: حذف نویز تناوبی</li>
+            </ul>
+        </div>
+
+        <h2>فاصله از مرکز</h2>
+        
+        <div class="definition">
+            <p>در فیلترگذاری فرکانسی، معمولاً از فاصله از مرکز استفاده می‌کنیم:</p>
+            <div class="formula">
+                $$D(u, v) = \sqrt{(u - M/2)^2 + (v - N/2)^2}$$
+            </div>
+            <p>که در آن $(M/2, N/2)$ مرکز تصویر فرکانسی است.</p>
+        </div>
+
+        <h2>مزایای فیلترگذاری در حوزه فرکانس</h2>
+        
+        <ul>
+            <li><strong>سادگی:</strong> طراحی فیلتر در حوزه فرکانس ساده‌تر است</li>
+            <li><strong>کنترل دقیق:</strong> می‌توانیم دقیقاً مشخص کنیم کدام فرکانس‌ها حذف یا تقویت شوند</li>
+            <li><strong>سرعت:</strong> با استفاده از FFT، فیلترگذاری سریع است</li>
+            <li><strong>درک بصری:</strong> می‌توانیم طیف را ببینیم و فیلتر را طراحی کنیم</li>
+        </ul>
+
+        <h2>معایب فیلترگذاری در حوزه فرکانس</h2>
+        
+        <ul>
+            <li><strong>اثر حاشیه:</strong> فرض متناوب بودن تصویر ممکن است مشکل ایجاد کند</li>
+            <li><strong>حافظه:</strong> نیاز به ذخیره طیف فرکانسی</li>
+            <li><strong>پیچیدگی:</strong> نیاز به تبدیل به حوزه فرکانس و برگشت</li>
+        </ul>
+
+        <h2>مراحل فیلترگذاری</h2>
+        
+        <div class="definition">
+            <ol>
+                <li><strong>مرکزگذاری:</strong> $f(x, y) \cdot (-1)^{x+y}$</li>
+                <li><strong>تبدیل فوریه:</strong> $F(u, v) = DFT\{f(x, y)\}$</li>
+                <li><strong>ضرب در فیلتر:</strong> $G(u, v) = H(u, v) \cdot F(u, v)$</li>
+                <li><strong>تبدیل معکوس:</strong> $g(x, y) = IDFT\{G(u, v)\}$</li>
+                <li><strong>مرکزگذاری معکوس:</strong> $g(x, y) \cdot (-1)^{x+y}$</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="10_lowpass_filters.html">فیلترهای پایین‌گذر</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

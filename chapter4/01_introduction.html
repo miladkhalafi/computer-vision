@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - مقدمه تبدیل فوریه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="01_introduction.html">مقدمه</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: مقدمه تبدیل فوریه</h1>
+
+        <div class="definition">
+            <h2>تبدیل فوریه چیست؟</h2>
+            <p><strong>تبدیل فوریه</strong> (Fourier Transform) یکی از مهم‌ترین ابزارهای ریاضی در پردازش سیگنال و تصویر است که به ما امکان تحلیل و پردازش در <strong>حوزه فرکانس</strong> را می‌دهد.</p>
+        </div>
+
+        <h2>ایده اصلی تبدیل فوریه</h2>
+        
+        <div class="highlight">
+            <h3>قضیه فوریه</h3>
+            <p><strong>هر تابع متناوب</strong> می‌تواند به صورت <strong>مجموع سینوس‌ها و کسینوس‌هایی با فرکانس‌های مختلف</strong> بیان شود که هر کدام در ضریب متفاوتی ضرب می‌شود. این مجموع را <strong>سری فوریه</strong> می‌نامیم.</p>
+        </div>
+
+        <div class="definition">
+            <h3>ویژگی مهم</h3>
+            <ul>
+                <li>مهم نیست تابع چقدر پیچیده باشد</li>
+                <li>اگر تابع <strong>متناوب</strong> باشد و بعضی از شرایط ساده ریاضی را برآورده کند</li>
+                <li>می‌تواند توسط چنین مجموعی (سری فوریه) نشان داده شود</li>
+            </ul>
+        </div>
+
+        <h2>بازسازی بدون از دست رفتن اطلاعات</h2>
+        
+        <div class="highlight">
+            <p>یک تابع که به صورت <strong>سری فوریه</strong> یا <strong>تبدیل فوریه</strong> بیان شده است می‌تواند کاملاً با فرایند معکوس، <strong>بدون از بین رفتن اطلاعات</strong>، بازسازی شود.</p>
+        </div>
+
+        <div class="definition">
+            <h3>اهمیت این ویژگی</h3>
+            <p>این نکته یکی از <strong>مهم‌ترین ویژگی‌های</strong> این نمایش است زیرا:</p>
+            <ul>
+                <li>به ما اجازه می‌دهد در <strong>حوزه فوریه</strong> (حوزه فرکانس) کار کنیم</li>
+                <li>سپس به <strong>حوزه اصلی</strong> (حوزه زمان یا مکان) برگردیم</li>
+                <li><strong>بدون اینکه اطلاعاتی را از دست بدهیم</strong></li>
+            </ul>
+        </div>
+
+        <h2>کاربرد در پردازش تصویر</h2>
+        
+        <p>در پردازش تصویر، تبدیل فوریه به ما امکان می‌دهد:</p>
+        <ul>
+            <li><strong>تحلیل فرکانسی:</strong> تشخیص الگوهای تکراری و نویز در تصویر</li>
+            <li><strong>فیلترگذاری:</strong> حذف یا تقویت فرکانس‌های خاص</li>
+            <li><strong>فشرده‌سازی:</strong> استفاده از ویژگی‌های فرکانسی برای فشرده‌سازی تصویر</li>
+            <li><strong>تشخیص الگو:</strong> شناسایی الگوهای خاص در تصویر</li>
+        </ul>
+
+        <h2>مزایای کار در حوزه فرکانس</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>سادگی در فیلترگذاری:</strong> فیلترگذاری در حوزه فرکانس ساده‌تر از حوزه مکان است</li>
+                <li><strong>تحلیل بهتر:</strong> می‌توانیم فرکانس‌های مختلف را به صورت جداگانه تحلیل کنیم</li>
+                <li><strong>کارایی محاسباتی:</strong> الگوریتم FFT محاسبات را بسیار سریع می‌کند</li>
+                <li><strong>درک بصری:</strong> طیف فرکانسی تصویر اطلاعات مفیدی درباره ساختار تصویر می‌دهد</li>
+            </ul>
+        </div>
+
+        <h2>ساختار این فصل</h2>
+        
+        <p>در این فصل به ترتیب با موارد زیر آشنا می‌شوید:</p>
+        <ol>
+            <li><strong>مبانی ریاضی:</strong> اعداد مختلط، سری فوریه، توابع ضربه</li>
+            <li><strong>تبدیل فوریه:</strong> یک متغیره، دو متغیره، گسسته (DFT)</li>
+            <li><strong>الگوریتم‌های محاسباتی:</strong> FFT برای محاسبه سریع</li>
+            <li><strong>فیلترگذاری:</strong> انواع فیلترهای فرکانسی و کاربردهای آنها</li>
+        </ol>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="02_complex_numbers.html">اعداد مختلط</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - فیلترگذاری همومورفیک</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="11_highpass_filters.html">قبلی: فیلترهای بالاگذر</a>
+            <a href="13_selective_filtering.html">بعدی: فیلترگذاری انتخابی</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: فیلترگذاری همومورفیک</h1>
+
+        <div class="definition">
+            <h2>مشکل: روشنایی ناهموار</h2>
+            <p>در بسیاری از تصاویر، روشنایی به صورت ناهموار توزیع شده است. این مشکل در تصاویر با:</p>
+            <ul>
+                <li>سایه‌های قوی</li>
+                <li>روشنایی غیریکنواخت</li>
+                <li>تصاویر با کنتراست پایین</li>
+            </ul>
+            <p>بیشتر دیده می‌شود.</p>
+        </div>
+
+        <h2>مدل ضربی روشنایی-بازتاب</h2>
+        
+        <div class="formula">
+            $$f(x, y) = i(x, y) \cdot r(x, y)$$
+        </div>
+
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$i(x, y)$</strong>: مولفه روشنایی (illumination) - تغییرات آهسته</li>
+                <li><strong>$r(x, y)$</strong>: مولفه بازتاب (reflectance) - تغییرات سریع</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>ویژگی‌های مدل</h3>
+            <ul>
+                <li><strong>روشنایی:</strong> معمولاً تغییرات آهسته دارد → فرکانس‌های پایین</li>
+                <li><strong>بازتاب:</strong> معمولاً تغییرات سریع دارد → فرکانس‌های بالا</li>
+                <li><strong>مشکل:</strong> نمی‌توانیم مستقیماً در حوزه فرکانس فیلتر کنیم</li>
+            </ul>
+        </div>
+
+        <h2>راه حل: تبدیل لگاریتمی</h2>
+        
+        <div class="definition">
+            <p>با اعمال لگاریتم، ضرب به جمع تبدیل می‌شود:</p>
+            <div class="formula">
+                $$z(x, y) = \ln f(x, y) = \ln i(x, y) + \ln r(x, y)$$
+            </div>
+        </div>
+
+        <h2>مراحل فیلترگذاری همومورفیک</h2>
+        
+        <div class="highlight">
+            <h3>مرحله 1: تبدیل لگاریتمی</h3>
+            <div class="formula">
+                $$z(x, y) = \ln f(x, y) = \ln i(x, y) + \ln r(x, y)$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>مرحله 2: تبدیل فوریه</h3>
+            <div class="formula">
+                $$Z(u, v) = F\{z(x, y)\} = F_i(u, v) + F_r(u, v)$$
+            </div>
+            <p>که در آن $F_i$ و $F_r$ به ترتیب تبدیل فوریه $\ln i$ و $\ln r$ هستند.</p>
+        </div>
+
+        <div class="highlight">
+            <h3>مرحله 3: فیلترگذاری در حوزه فرکانس</h3>
+            <div class="formula">
+                $$S(u, v) = H(u, v) \cdot Z(u, v) = H(u, v) \cdot F_i(u, v) + H(u, v) \cdot F_r(u, v)$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>مرحله 4: تبدیل معکوس</h3>
+            <div class="formula">
+                $$s(x, y) = F^{-1}\{S(u, v)\} = i'(x, y) + r'(x, y)$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>مرحله 5: معکوس لگاریتم</h3>
+            <div class="formula">
+                $$g(x, y) = e^{s(x, y)} = e^{i'(x, y)} \cdot e^{r'(x, y)} = i_0(x, y) \cdot r_0(x, y)$$
+            </div>
+        </div>
+
+        <h2>تابع انتقال فیلتر همومورفیک</h2>
+        
+        <div class="formula">
+            $$H(u, v) = (\gamma_H - \gamma_L) \left[ 1 - e^{-c \left[ \frac{D^2(u, v)}{D_0^2} \right]} \right] + \gamma_L$$
+        </div>
+
+        <div class="definition">
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$\gamma_L < 1$</strong>: تضعیف فرکانس‌های پایین (کاهش تغییرات روشنایی)</li>
+                <li><strong>$\gamma_H > 1$</strong>: تقویت فرکانس‌های بالا (افزایش جزئیات بازتاب)</li>
+                <li><strong>$c$</strong>: کنترل تیزی شیب</li>
+                <li><strong>$D_0$</strong>: فرکانس قطع</li>
+            </ul>
+        </div>
+
+        <h2>کاربردها</h2>
+        
+        <div class="highlight">
+            <ul>
+                <li><strong>یکنواخت کردن روشنایی:</strong> حذف سایه‌ها و تغییرات روشنایی</li>
+                <li><strong>ارتقای کنتراست:</strong> افزایش کنتراست در نواحی تاریک</li>
+                <li><strong>افزایش جزئیات:</strong> برجسته کردن جزئیات در نواحی تاریک</li>
+                <li><strong>پردازش تصاویر پزشکی:</strong> بهبود تصاویر با روشنایی ناهموار</li>
+            </ul>
+        </div>
+
+        <h2>مثال: ارتقای تصویر</h2>
+        
+        <div class="definition">
+            <p>برای ارتقای تصویر با روشنایی ناهموار:</p>
+            <ul>
+                <li>$\gamma_H = 2$: تقویت دو برابری جزئیات</li>
+                <li>$\gamma_L = 0.25$: کاهش تغییرات روشنایی</li>
+                <li>نتیجه: تصویر با روشنایی یکنواخت‌تر و جزئیات بیشتر</li>
+            </ul>
+        </div>
+
+        <h2>مزایای فیلترگذاری همومورفیک</h2>
+        
+        <ul>
+            <li><strong>کنترل مستقل:</strong> کنترل جداگانه روی روشنایی و بازتاب</li>
+            <li><strong>نتایج طبیعی:</strong> تصویر ارتقا یافته طبیعی به نظر می‌رسد</li>
+            <li><strong>کارایی:</strong> می‌تواند مشکلات روشنایی را به خوبی حل کند</li>
+        </ul>
+
+        <h2>محدودیت‌ها</h2>
+        
+        <div class="definition">
+            <ul>
+                <li><strong>مدل ساده:</strong> مدل $f = i \cdot r$ همیشه دقیق نیست</li>
+                <li><strong>پارامترها:</strong> نیاز به تنظیم دقیق پارامترها دارد</li>
+                <li><strong>محاسبات:</strong> نیاز به تبدیل فوریه و لگاریتم</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="13_selective_filtering.html">فیلترگذاری انتخابی</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

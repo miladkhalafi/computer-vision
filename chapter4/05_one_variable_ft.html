@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فصل چهارم - تبدیل فوریه یک متغیره</title>
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&family=Gandom:wght@400;700&family=Parastoo:wght@400;700&family=Sahel:wght@300;400;600;700&family=Vazir:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+        }
+        body {
+            font-family: 'Vazir', 'Sahel', 'Samim', 'Gandom', 'Parastoo', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.8;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-right: 4px solid #3498db;
+            padding-right: 15px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            border-right: 3px solid #3498db;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-right: 3px solid #ffc107;
+        }
+        .definition {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-right: 3px solid #2196F3;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">فهرست مطالب</a>
+            <a href="04_impulse_functions.html">قبلی: توابع ضربه</a>
+            <a href="06_two_variable_ft.html">بعدی: تبدیل فوریه دو متغیره</a>
+        </div>
+
+        <h1>فصل چهارم – فیلتر در حوزه فرکانس: تبدیل فوریه یک متغیره</h1>
+
+        <div class="definition">
+            <h2>تعریف تبدیل فوریه</h2>
+            <p>تبدیل فوریه تابع پیوسته $f(t)$ از متغیر پیوسته $t$ که به صورت $F\{f(t)\}$ نمایش داده می‌شود:</p>
+            <div class="formula">
+                $$F\{f(t)\} = F(\mu) = \int_{-\infty}^{\infty} f(t) e^{-j2\pi\mu t} dt$$
+            </div>
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$\mu$</strong>: متغیر فرکانس (متغیر پیوسته)</li>
+                <li><strong>$F(\mu)$</strong>: تابعی از $\mu$ است که طیف فرکانسی را نشان می‌دهد</li>
+                <li><strong>$j$</strong>: واحد موهومی ($\sqrt{-1}$)</li>
+            </ul>
+        </div>
+
+        <h2>تبدیل معکوس فوریه</h2>
+        
+        <div class="definition">
+            <p>معکوس تبدیل فوریه که به صورت $F^{-1}\{F(\mu)\}$ نمایش داده می‌شود:</p>
+            <div class="formula">
+                $$f(t) = F^{-1}\{F(\mu)\} = \int_{-\infty}^{\infty} F(\mu) e^{j2\pi\mu t} d\mu$$
+            </div>
+            <p>این رابطه نشان می‌دهد که می‌توانیم تابع اصلی را از طیف فرکانسی آن بازسازی کنیم.</p>
+        </div>
+
+        <h2>ویژگی‌های تبدیل فوریه</h2>
+        
+        <ul>
+            <li><strong>خطی بودن:</strong> $F\{af(t) + bg(t)\} = aF\{f(t)\} + bF\{g(t)\}$</li>
+            <li><strong>جابجایی:</strong> $F\{f(t - t_0)\} = F(\mu) e^{-j2\pi\mu t_0}$</li>
+            <li><strong>مقیاس‌گذاری:</strong> $F\{f(at)\} = \frac{1}{|a|}F\left(\frac{\mu}{a}\right)$</li>
+            <li><strong>کانولوشن:</strong> $F\{f(t) * g(t)\} = F(\mu) \cdot G(\mu)$</li>
+            <li><strong>ضرب:</strong> $F\{f(t) \cdot g(t)\} = F(\mu) * G(\mu)$</li>
+        </ul>
+
+        <h2>مثال: تبدیل فوریه پالس مستطیلی</h2>
+        
+        <div class="definition">
+            <p>برای یک پالس مستطیلی به عرض $W$:</p>
+            <div class="formula">
+                $$f(t) = \begin{cases}
+                A & \text{if } |t| \leq W/2 \\
+                0 & \text{otherwise}
+                \end{cases}$$
+            </div>
+            <p>تبدیل فوریه آن:</p>
+            <div class="formula">
+                $$F(\mu) = AW \frac{\sin(\pi\mu W)}{\pi\mu W} = AW \text{sinc}(\mu W)$$
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>ویژگی‌های پالس مستطیلی</h3>
+            <ul>
+                <li>تابع sinc دارای لوب اصلی و لوب‌های فرعی است</li>
+                <li>هر چه پالس پهن‌تر باشد، طیف باریک‌تر می‌شود</li>
+                <li>هر چه پالس باریک‌تر باشد، طیف پهن‌تر می‌شود</li>
+            </ul>
+        </div>
+
+        <h2>نمایش طیف</h2>
+        
+        <div class="definition">
+            <p>تبدیل فوریه $F(\mu)$ یک تابع مختلط است که می‌توان آن را به صورت زیر نمایش داد:</p>
+            <div class="formula">
+                $$F(\mu) = |F(\mu)| e^{j\phi(\mu)}$$
+            </div>
+            <p>که در آن:</p>
+            <ul>
+                <li><strong>$|F(\mu)|$</strong>: طیف دامنه (Magnitude Spectrum)</li>
+                <li><strong>$\phi(\mu)$</strong>: طیف فاز (Phase Spectrum)</li>
+            </ul>
+        </div>
+
+        <h2>تبدیل فوریه توابع متداول</h2>
+        
+        <ul>
+            <li><strong>تابع ضربه:</strong> $F\{\delta(t)\} = 1$</li>
+            <li><strong>تابع ثابت:</strong> $F\{1\} = \delta(\mu)$</li>
+            <li><strong>نمایی:</strong> $F\{e^{j2\pi\mu_0 t}\} = \delta(\mu - \mu_0)$</li>
+            <li><strong>کسینوس:</strong> $F\{\cos(2\pi\mu_0 t)\} = \frac{1}{2}[\delta(\mu - \mu_0) + \delta(\mu + \mu_0)]$</li>
+        </ul>
+
+        <h2>کاربرد در پردازش سیگنال</h2>
+        
+        <div class="highlight">
+            <p>تبدیل فوریه یک متغیره برای:</p>
+            <ul>
+                <li>تحلیل فرکانسی سیگنال‌های یک بعدی</li>
+                <li>فیلترگذاری در حوزه فرکانس</li>
+                <li>تشخیص الگوهای تکراری</li>
+                <li>فشرده‌سازی سیگنال</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd;">
+            <p><strong>ادامه در:</strong> <a href="06_two_variable_ft.html">تبدیل فوریه دو متغیره</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
